@@ -101,12 +101,12 @@ const Footer = () => {
           ))}
         </div>
 
-        <Separator className="my-8 bg-muted-foreground" />
+        <Separator className="my-8 border" />
 
         {/* Bottom Bar */}
         <div className="flex flex-row justify-between items-center gap-4">
           <div className="flex gap-2">
-            <p className="px-4 py-2 text-sm  rounded-md border border-foreground/50">
+            <p className="px-4 py-2 text-sm  rounded-md border border-foreground/10">
               EN
             </p>
           </div>
