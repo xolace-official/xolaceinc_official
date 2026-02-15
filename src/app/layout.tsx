@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Nunito, PT_Sans } from "next/font/google";
 import "./globals.css";
 import { MotionProvider } from "@/providers/motion-provider";
+import NavBar from "@/layout/nav-bar";
+import Footer from "@/layout/footer";
 
 const _nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" });
 const ptSans = PT_Sans({
@@ -30,7 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${_nunito.variable} ${ptSans.variable} antialiased`}>
-        <MotionProvider>{children}</MotionProvider>
+        <MotionProvider>
+          <NavBar/>
+          {children}
+          <Footer/>
+        </MotionProvider>
       </body>
     </html>
   );
