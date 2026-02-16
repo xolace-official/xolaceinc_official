@@ -37,7 +37,7 @@ const MeetXolaceSection = () => {
     >
       <div className="max-w-5xl mx-auto">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-24 md:mb-32"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -49,40 +49,57 @@ const MeetXolaceSection = () => {
           </p>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
-          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-1 rounded-full bg-linear-to-b from-primary/40 via-primary to-primary/40" />
+        <div className="max-w-4xl mx-auto space-y-16 md:space-y-0">
+          {features.map((feature, i) => {
+            const Icon = feature.icon;
+            const isEven = i % 2 === 0;
 
-          <div className="md:pl-12 divide-y divide-border">
-            {features.map((feature, i) => {
-              const Icon = feature.icon;
-              return (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{
-                    delay: i * 0.12,
-                    duration: 0.5,
-                    ease: "easeOut",
-                  }}
-                  className="py-8 md:py-10"
-                >
-                  <div className="flex items-start gap-5 md:gap-8">
-                    <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary shrink-0 mt-1" />
-                    <div>
-                      <h3 className="text-xl md:text-2xl font-bold mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
+            return (
+              <motion.div
+                key={feature.title}
+                className={`relative md:py-14 ${
+                  isEven
+                    ? "md:mr-auto md:pr-[50%]"
+                    : "md:ml-auto md:pl-[50%]"
+                }`}
+                initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  delay: i * 0.1,
+                  duration: 0.6,
+                  ease: "easeOut",
+                }}
+              >
+                <div className="relative">
+                  <Icon
+                    className="absolute -top-2 right-0 w-20 h-20 md:w-28 md:h-28 text-primary/[0.06]"
+                    strokeWidth={1}
+                  />
+
+                  <div
+                    className={`relative ${isEven ? "md:text-left" : "md:text-right"}`}
+                  >
+                    <Icon
+                      className="w-8 h-8 md:w-10 md:h-10 text-primary mb-4 md:mb-5"
+                      strokeWidth={1.5}
+                      style={
+                        !isEven
+                          ? { marginLeft: "auto", marginRight: 0 }
+                          : undefined
+                      }
+                    />
+                    <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-md">
+                      {feature.description}
+                    </p>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
