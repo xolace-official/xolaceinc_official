@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${_nunito.variable} ${ptSans.variable} antialiased`}>
+      <body className={`${_nunito.variable} ${ptSans.variable} antialiased overflow-x-hidden`}>
         <MotionProvider>
           <NavBar/>
           {children}
