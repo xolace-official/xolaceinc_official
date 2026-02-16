@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Flame, Heart, MessageCircle, Shield } from "lucide-react";
+import { motion } from "motion/react";
 
 const features = [
   {
