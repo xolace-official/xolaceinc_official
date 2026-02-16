@@ -22,7 +22,7 @@ const stats = [
 
 const ProblemSection = () => {
   return (
-    <section id="problem" className="section bg-muted/30">
+    <section id="problem" className="section overflow-hidden bg-muted/30">
       <div className="max-w-5xl mx-auto">
         <motion.h2
           className="section-header text-center mb-16"

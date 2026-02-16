@@ -5,7 +5,7 @@ import { DollarSign, Heart, X } from "lucide-react";
 
 const TheGapSection = () => {
   return (
-    <section id="the-gap" className="section bg-card">
+    <section id="the-gap" className="section overflow-hidden bg-card">
       <div className="max-w-5xl mx-auto">
         <motion.div
           className="text-center mb-20"

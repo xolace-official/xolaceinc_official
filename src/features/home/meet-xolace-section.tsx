@@ -33,7 +33,7 @@ const MeetXolaceSection = () => {
   return (
     <section
       id="meet-xolace"
-      className="section bg-linear-to-b from-background to-muted/20"
+      className="section overflow-hidden bg-linear-to-b from-background to-muted/20"
     >
       <div className="max-w-5xl mx-auto">
         <motion.div
