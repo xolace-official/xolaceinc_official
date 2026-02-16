@@ -10,7 +10,7 @@ import WhoItsForSection from "@/features/home/who-its-for-section";
 export function HomePage() {
   return (
     <main className={"flex items-start justify-start w-full min-h-screen bg-background text-foreground font-sans"}>
-      <div className="flex items-start justify-start w-full flex-col bg-background">
+      <div className="flex w-full flex-col bg-background">
         <HeroSection />
         <ProblemSection />
         <TheGapSection />

@@ -7,7 +7,7 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative flex min-h-svh flex-col items-center justify-center overflow-hidden px-4 md:px-8"
+      className="relative flex min-h-[92svh] flex-col items-center justify-center overflow-hidden px-4 md:px-8"
     >
       <div className="w-full max-w-5xl mx-auto text-center">
         <motion.h1
