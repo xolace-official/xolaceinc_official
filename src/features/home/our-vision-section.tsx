@@ -1,6 +1,6 @@
 'use client';
 
-import { Sparkles, Users, Video, Stethoscope, ArrowRight, Globe } from "lucide-react";
+import { ArrowRight, Globe, Sparkles, Stethoscope, Users, Video } from "lucide-react";
 import {CTAButton} from "@/layout/cta-button";
 
 const OurVisionSection = () => {
@@ -88,7 +88,7 @@ const OurVisionSection = () => {
 
               return (
                 <div
-                  key={index}
+                  key={item.phase}
                   className="group relative"
                   style={{
                     animation: `fadeInUp 0.6s ease-out ${index * 200}ms both`,

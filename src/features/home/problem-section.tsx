@@ -25,8 +25,8 @@ const ProblemSection = () => {
         </h2>
 
         <div className="grid sm:grid-cols-3 gap-8 md:gap-12">
-          {stats.map((stat, index) => (
-            <div key={index} className="space-y-2">
+          {stats.map((stat) => (
+            <div key={stat.label} className="space-y-2">
               <div className="text-5xl font-bold text-destructive">
                 {stat.value}
               </div>
