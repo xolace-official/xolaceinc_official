@@ -40,19 +40,19 @@ const navigationData: NavItem[] = [
     dropdown: [
       {
         label: "Our Story",
-        href: "/about#ourStory",
+        href: "/about/our-story",
         description: "Why we exist and our mission",
         icon: <Heart className="w-4 h-4"/>,
       },
       {
         label: "The Team",
-        href: "/about#team",
+        href: "/about/team",
         description: "Meet the people behind Xolace",
         icon: <Users className="w-4 h-4"/>,
       },
       {
         label: "Impact & Vision",
-        href: "/about#impact",
+        href: "/about/impact",
         description: "Our global vision and future plans",
         icon: <Trophy className="w-4 h-4"/>,
       },
@@ -68,7 +68,7 @@ const navigationData: NavItem[] = [
     dropdown: [
       {
         label: "Campfires",
-        href: "/community#campfires",
+        href: "/community/campfires",
         description: "Guided support communities",
         icon: <Users className="w-4 h-4"/>,
       },
