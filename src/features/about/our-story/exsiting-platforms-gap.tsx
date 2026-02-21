@@ -1,118 +1,66 @@
-'use client'
+"use client";
 
-import { motion } from 'motion/react'
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
+import { Reveal } from "./reveal";
 
-const inBetweenSpaces = [
-  'The space before someone books a session.',
-  'The space between sessions.',
-  'The space where someone just needs to talk.',
-]
+const cards = [
+  {
+    label: "Social media",
+    verdict: "Everywhere. But not safe.",
+    body: "Built to broadcast, not to hold space. When you're vulnerable, the last thing you need is an algorithm deciding who sees your pain - or a comment section waiting.",
+    destructiveVar: "--primary",
+  },
+  {
+    label: "Therapy",
+    verdict: "Powerful. But gated.",
+    body: "A $200 session. A six-week waitlist. The courage it takes just to make that first call. Too many walls between the moment you need help and the moment you get it.",
+    destructiveVar: "--destructive",
+  },
+];
 
-const ExistingPlatformsGap = () => {
+export function ExistingPlatformsGap() {
   return (
-    <section className="section overflow-hidden bg-muted/30">
-      <div className="max-w-5xl mx-auto">
+    <section className="bg-background section">
+      <div className="max-w-7xl mx-auto">
+        <Reveal>
+          <p className="text-[clamp(1.8rem,3.5vw,3.2rem)] font-bold tracking-tight leading-[1.1] max-w-3xl mb-20">
+            Every existing option asks you to compromise somewhere that matters.
+          </p>
+        </Reveal>
 
-        {/* Label */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-20"
-        >
-          The Gap
-        </motion.p>
-
-        {/* Two opposing statements — stacked large, not in columns */}
-        <div className="mb-20 space-y-6">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Social platforms were built for</p>
-            <p className="text-4xl md:text-6xl font-bold text-destructive/70 leading-none">
-              visibility.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-2xl md:text-3xl text-muted-foreground/30 font-light pl-2"
-          >
-            —
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="pl-8 md:pl-20"
-          >
-            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Therapy was built for</p>
-            <p className="text-4xl md:text-6xl font-bold text-destructive/70 leading-none">
-              diagnosis.
-            </p>
-          </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border rounded-2xl overflow-hidden">
+          {cards.map((item, i) => {
+            const ref = useRef(null);
+            const inView = useInView(ref, { once: true, margin: "-60px" });
+            return (
+              <motion.div
+                key={item.label}
+                ref={ref}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.12 }}
+                className={`relative p-10 md:p-14 ${i === 0 ? "border-b md:border-b-0 md:border-r border-border" : ""}`}
+                style={{
+                  background: `linear-gradient(135deg, color-mix(in oklch, var(${item.destructiveVar}) 12%, transparent), transparent)`,
+                }}
+              >
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-5">{item.label}</p>
+                <h3 className="text-2xl md:text-3xl font-bold mb-5 leading-snug">{item.verdict}</h3>
+                <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">{item.body}</p>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* The gap question — centred, large */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="py-14 md:py-20 border-t text-center"
-        >
-          <p className="text-3xl md:text-5xl font-bold text-foreground mb-2">
-            But what about the space
+        <Reveal delay={0.2} className="mt-20">
+          <p className="text-[clamp(1.6rem,3vw,2.8rem)] font-bold tracking-tight leading-[1.15]">
+            Nothing existed for the space{" "}
+            <span className="text-primary">in between</span>.
+            <span className="text-muted-foreground font-light"> Between struggling quietly and being ready for therapy. That gap swallowed people whole.</span>
           </p>
-          <p className="text-3xl md:text-5xl font-bold text-primary">
-            in between?
-          </p>
-        </motion.div>
-
-        {/* In-between list — large, plain, stacked */}
-        <div className="py-16 space-y-8">
-          {inBetweenSpaces.map((space, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="text-xl md:text-2xl text-muted-foreground"
-            >
-              {space}
-            </motion.p>
-          ))}
-        </div>
-
-        {/* Final line */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="pt-8"
-        >
-          <div className="h-px w-20 bg-primary mb-10" />
-          <p className="text-2xl md:text-4xl font-bold text-primary leading-snug">
-            Before therapy.<br />
-            Between sessions.<br />
-            Outside the noise.
-          </p>
-        </motion.div>
-
+        </Reveal>
       </div>
     </section>
-  )
+  );
 }
-
-export default ExistingPlatformsGap

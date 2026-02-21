@@ -1,101 +1,80 @@
-'use client'
+"use client";
 
-import { motion } from 'motion/react'
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
+import {Reveal} from "@/features/about/our-story/reveal";
 
-const dreamPoints = [
-  'Asking for help is normal.',
-  'Professionals are integrated into community, not hidden behind paywalls.',
-  'Support exists before crisis.',
-  'No one feels alone on the internet.',
-]
+const pillars = [
+  {
+    heading: "A place to say what you can't say anywhere else.",
+    body: "Anonymously or openly. No profile pressure, no performance, no audience metrics. Just a space that holds what you bring to it.",
+  },
+  {
+    heading: "Community that shows up like community should.",
+    body: "People who've been through similar things. Campfires - small focused groups around what actually matters: grief, anxiety, identity, change.",
+  },
+  {
+    heading: "Support that scales with what you need.",
+    body: "Peer connection now. Guided sessions next. Licensed professionals when you're ready for that step. Your pace. Your call.",
+  },
+  {
+    heading: "Free. Because it has to be.",
+    body: "We started in a place where cost and stigma kept people silent. That's why free isn't a feature - it's the whole point.",
+  },
+];
 
-const OurDream = () => {
+export function OurDream() {
   return (
-    <section className="section overflow-hidden bg-card">
-
-      {/* Ambient glow */}
-      <div
-        className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full blur-[160px] opacity-10 pointer-events-none"
-        style={{ background: 'oklch(0.6726 0.2904 341.4084)' }}
-      />
-
-      <div className="max-w-5xl mx-auto relative z-10">
-
-        {/* Label */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-20"
-        >
-          The Vision
-        </motion.p>
-
-        {/* Opening question — italic, restrained */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-xl md:text-2xl text-muted-foreground italic mb-4"
-        >
-          If Xolace succeeds, what changes?
-        </motion.p>
-
-        {/* "A world where" — big anchor */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="text-4xl md:text-6xl font-bold text-foreground mb-20"
-        >
-          A world where:
-        </motion.p>
-
-        {/* Dream points — large, staggered, no borders or bullets */}
-        <div className="space-y-12 md:space-y-16 mb-28">
-          {dreamPoints.map((dream, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.75, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-baseline gap-5 md:gap-8 group"
-            >
-              <span className="text-xs font-mono text-primary/40 shrink-0 group-hover:text-primary transition-colors duration-300">
-                0{i + 1}
-              </span>
-              <p className="text-2xl md:text-4xl font-bold text-foreground group-hover:text-primary transition-colors duration-500 leading-snug">
-                {dream}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Final statement — centred, editorial */}
+    <section
+      className="section relative overflow-hidden"
+      style={{ background: "linear-gradient(160deg, #0f0a20 0%, #0a0614 50%, #0d0f2a 100%)" }}
+    >
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-center"
-        >
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-12" />
-          <p className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-            We are building what we believe
-          </p>
-          <p className="text-3xl md:text-5xl font-bold text-primary leading-tight mt-2">
-            the world quietly needs.
-          </p>
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-12" />
-        </motion.div>
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] rounded-full opacity-10"
+          style={{
+            background: "conic-gradient(from 0deg, var(--primary), var(--accent), var(--ring), var(--primary))",
+          }}
+        />
+      </div>
 
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <Reveal y={20}>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white leading-[1.05] mb-20">
+            So we built a bridge.
+          </h2>
+        </Reveal>
+
+        <div className="space-y-0">
+          {pillars.map((item, i) => {
+            const ref = useRef(null);
+            const inView = useInView(ref, { once: true, margin: "-60px" });
+            return (
+              <motion.div
+                key={item.heading}
+                ref={ref}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: 0.06 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-24 py-10 border-b border-white/10 last:border-0 group"
+              >
+                <h3
+                  className="text-xl md:text-2xl font-bold leading-snug text-white transition-colors duration-300"
+                  onMouseEnter={e => (e.currentTarget.style.color = "var(--primary)")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "white")}
+                >
+                  {item.heading}
+                </h3>
+                <p className="text-base md:text-lg text-white/55 font-light leading-relaxed">
+                  {item.body}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
-  )
+  );
 }
-
-export default OurDream

@@ -1,81 +1,74 @@
-'use client'
+"use client";
 
-import { motion } from 'motion/react'
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
 
-const observations = [
-  { number: '01', text: 'The internet amplifies what looks good.', sub: 'Not what is real.' },
-  { number: '02', text: 'Vulnerability feels risky.', sub: 'So it stays hidden.' },
-  { number: '03', text: 'Support often arrives late —', sub: 'if it arrives at all.' },
-]
+const stats = [
+  { num: "75%",    text: "of people living with mental illness receive no treatment at all." },
+  { num: "1 in 4", text: "people will go through this - this year, quietly, alone." },
+  { num: "$0",     text: "is what access to real community support should cost." },
+];
 
-const WhatWeObserved = () => {
+export function WhatWeObserved() {
   return (
-    <section className="section overflow-hidden bg-background">
-      <div className="max-w-5xl mx-auto">
+    <div className="relative">
+      <section
+        className="relative section"
+        style={{ background: "linear-gradient(135deg, #0a0614 0%, #1a0a3a 40%, #0d1a3a 70%, #0a0614 100%)" }}
+      >
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full opacity-20"
+            style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
+          />
+          <motion.div
+            animate={{ x: [0, -25, 0], y: [0, 25, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+            className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full opacity-20"
+            style={{ background: "radial-gradient(circle, var(--destructive), transparent 70%)" }}
+          />
+          <motion.div
+            animate={{ x: [0, 20, 0], y: [0, 15, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 6 }}
+            className="absolute top-1/2 right-0 w-[350px] h-[350px] rounded-full opacity-15"
+            style={{ background: "radial-gradient(circle, var(--ring), transparent 70%)" }}
+          />
+        </div>
 
-        {/* Label */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-xs uppercase tracking-[0.25em] text-primary mb-14"
-        >
-          What We Saw
-        </motion.p>
-
-        {/* Huge numbered statements — stacked, full width */}
-        <div className="space-y-0">
-          {observations.map((obs, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="group border-t border-border py-5 md:py-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4 last:border-b"
-            >
-              <div className="flex items-start gap-6 md:gap-10">
-                <span className="text-xs text-destructive font-mono mt-1 shrink-0 pt-2">
-                  {obs.number}
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {stats.map((item, i) => {
+            const ref = useRef(null);
+            const inView = useInView(ref, { once: true, margin: "-60px" });
+            return (
+              <motion.div
+                key={item.num}
+                ref={ref}
+                initial={{ opacity: 0, x: -30 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.14, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-baseline gap-8 md:gap-14 py-10 border-b border-white/10 last:border-0"
+              >
+                <span
+                  className="text-[clamp(3rem,7vw,6.5rem)] font-bold tracking-tight leading-none shrink-0 w-[160px] md:w-[260px]"
+                  style={{
+                    background: "linear-gradient(135deg, var(--primary), var(--destructive))",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {item.num}
                 </span>
-                <h2 className="text-3xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight group-hover:text-primary transition-colors duration-500">
-                  {obs.text}
-                </h2>
-              </div>
-              <p className="text-base md:text-lg text-destructive italic md:text-right md:max-w-[180px] shrink-0 md:pb-1 pl-10 md:pl-0">
-                {obs.sub}
-              </p>
-            </motion.div>
-          ))}
+                <p className="text-xl md:text-2xl text-white/80 font-light leading-snug">
+                  {item.text}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
-
-        {/* Conclusion */}
-        <div className="w-full flex flex-col gap-8 items-center justify-center mt-14">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-lg text-muted-foreground italic "
-          >
-            Not because people don't care.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center justify-center text-center text-3xl md:text-5xl font-bold text-foreground leading-tight"
-          >
-            But because there isn't a space{' '}
-            <span className="text-primary">built for it.</span>
-          </motion.p>
-        </div>
-
-      </div>
-    </section>
-  )
+      </section>
+    </div>
+  );
 }
-
-export default WhatWeObserved

@@ -1,118 +1,76 @@
-'use client'
+"use client";
 
-import { motion } from 'motion/react'
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
+import {CTAButton} from "@/layout/cta-button";
+import {ArrowRight} from "lucide-react";
+import {useRouter} from "next/navigation";
 
-const OurStoryCTA = () => {
+export function OurStoryCTA() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const router = useRouter();
+
   return (
-    <section className="section overflow-hidden bg-gradient-to-b from-background to-muted/30 relative">
-
-      {/* Ambient glow */}
+    <section
+      className="relative section overflow-hidden text-center"
+      style={{ background: "linear-gradient(160deg, #0a0614 0%, #12062a 40%, #0a1020 70%, #0a0614 100%)" }}
+    >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 60% 50% at 50% 100%, oklch(0.6726 0.2904 341.4084 / 0.08), transparent)'
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 60%, color-mix(in oklch, var(--primary) 25%, transparent) 0%, color-mix(in oklch, var(--destructive) 12%, transparent) 40%, transparent 70%)",
+        }}
+      />
+      <motion.div
+        animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 50% 40% at 50% 50%, color-mix(in oklch, var(--destructive) 10%, transparent) 0%, transparent 70%)",
         }}
       />
 
-      <div className="max-w-5xl mx-auto relative z-10">
-
-        {/* Top divider */}
+      <div className="relative z-10 max-w-4xl mx-auto">
         <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-20 origin-left"
-        />
-
-        {/* Statement */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
+          ref={ref}
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="space-y-10"
         >
-          <p className="text-4xl sm:text-5xl md:text-7xl font-bold text-muted-foreground/40 leading-tight tracking-tight">
-            This is not just
-          </p>
-          <p className="text-4xl sm:text-5xl md:text-7xl font-bold text-muted-foreground/40 leading-tight tracking-tight">
-            our story.
-          </p>
-          <p className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground leading-tight tracking-tight mt-2">
-            It's a movement.
-          </p>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-lg md:text-xl text-muted-foreground mb-20 max-w-xl"
-        >
-          We're building this together — with people who believe mental health support should be for everyone, everywhere.
-        </motion.p>
-
-        {/* CTAs — plain text links, big and bold */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 sm:gap-16">
-          <motion.a
-            href="/join"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="group flex items-baseline gap-3"
-          >
-            <span className="text-2xl md:text-3xl font-bold text-primary border-b-2 border-primary pb-1 group-hover:opacity-70 transition-opacity duration-300">
-              Join the Community
-            </span>
-            <motion.span
-              className="text-primary text-2xl"
-              animate={{ x: [0, 5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+          <h2 className="text-[clamp(3rem,8vw,7rem)] font-bold tracking-[-0.04em] leading-[0.96] text-white">
+            This is just{" "}
+            <span
+              style={{
+                background: "linear-gradient(135deg, var(--primary), var(--destructive))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              →
-            </motion.span>
-          </motion.a>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="text-muted-foreground/40 text-lg hidden sm:block"
-          >
-            or
-          </motion.div>
-
-          <motion.a
-            href="/ambassadors"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="group flex items-baseline gap-3"
-          >
-            <span className="text-2xl md:text-3xl font-bold text-foreground border-b-2 border-border pb-1 group-hover:text-primary group-hover:border-primary transition-colors duration-300">
-              Become an Ambassador
+              the beginning.
             </span>
-            <span className="text-foreground group-hover:text-primary transition-colors duration-300 text-2xl">→</span>
-          </motion.a>
-        </div>
+          </h2>
 
-        {/* Bottom divider */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px bg-gradient-to-r from-primary via-transparent to-transparent mt-20 origin-left"
-        />
+          <p className="text-xl md:text-2xl text-white/55 font-light leading-relaxed max-w-2xl mx-auto">
+            We&apos;re building something steady, thoughtful, and long-term.
+            If any of this landed with you - you already belong here.
+          </p>
 
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <CTAButton
+            icon={ArrowRight}
+            iconPosition={"right"}
+            variant= "destructive"
+            size={"lg"}
+            onClick={() => {router.push("https://xolace.app")}}
+            label={"You Belong Here"}/>
+          </div>
+        </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
-export default OurStoryCTA
