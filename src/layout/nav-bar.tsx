@@ -46,7 +46,7 @@ const navigationData: NavItem[] = [
       },
       {
         label: "The Team",
-        href: "/about/team",
+        href: "/about/the-team",
         description: "Meet the people behind Xolace",
         icon: <Users className="w-4 h-4"/>,
       },
