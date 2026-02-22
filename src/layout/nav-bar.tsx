@@ -52,7 +52,7 @@ const navigationData: NavItem[] = [
       },
       {
         label: "Impact & Vision",
-        href: "/about/impact",
+        href: "/about/impact-and-vision",
         description: "Our global vision and future plans",
         icon: <Trophy className="w-4 h-4"/>,
       },
