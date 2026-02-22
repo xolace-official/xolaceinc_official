@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import Link from "next/link";
+import {CTAButton} from "@/layout/cta-button";
 
 export default function ImpactCTA() {
   const containerRef = useRef(null);
@@ -29,7 +30,7 @@ export default function ImpactCTA() {
   return (
     <section
       ref={containerRef}
-      className="relative bg-secondary section overflow-hidden border"
+      className="relative bg-accent section overflow-hidden border"
     >
       {/* BACKGROUND DECOR - The "X" Pulse */}
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
@@ -84,15 +85,11 @@ export default function ImpactCTA() {
               animate={{ x: btnPos.x * 0.2, y: btnPos.y * 0.2 }}
               className="relative"
             >
-              <Link
-                href="/signup"
-                className="relative z-10 inline-flex items-center justify-center bg-primary text-primary-foreground text-sm font-bold px-12 py-6 rounded-full overflow-hidden group transition-transform active:scale-95"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"
-                />
-                <span className="relative z-10">Join Xolace</span>
-              </Link>
+              <CTAButton
+                variant={"default"}
+                label={"Join Xolace"}
+                size="lg"
+              />
               {/* Button Shadow/Glow */}
               <motion.div
                 animate={{ x: btnPos.x * 0.1, y: btnPos.y * 0.1 }}
@@ -100,12 +97,7 @@ export default function ImpactCTA() {
               />
             </motion.div>
 
-            <Link
-              href="/about#ourStory"
-              className="text-sm font-bold uppercase tracking-widest border-b-2 border-transparent hover:border-primary transition-all py-2"
-            >
-              Read our story
-            </Link>
+            <CTAButton variant={"outline"} label={"Read Our Story"}/>
           </div>
         </div>
 
