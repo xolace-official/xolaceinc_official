@@ -2,7 +2,7 @@ import { Reveal } from "@/features/about/our-story/reveal";
 
 export function WhatWeObserved() {
   return (
-    <section className="relative overflow-hidden bg-background section">
+    <section className="relative overflow-hidden bg-background section mt-10">
       {/* Abstract gradient shapes */}
       <div
         className="pointer-events-none absolute -top-20 -right-20 h-[300px] w-[300px] rounded-full opacity-[0.07]"
@@ -36,7 +36,7 @@ export function WhatWeObserved() {
           </Reveal>
 
           {/* Observations */}
-          <div className="mt-16">
+          <div className="mt-5">
             <Reveal delay={0.1}>
               <div className="border-b border-border py-10">
                 <p className="text-xl font-semibold text-foreground md:text-2xl">
@@ -78,7 +78,7 @@ export function WhatWeObserved() {
 
           {/* Closing anchor */}
           <Reveal delay={0.15}>
-            <div className="mt-16">
+            <div className="mt-5">
               <p className="text-[clamp(1.6rem,3.5vw,3rem)] font-bold leading-[1.15] tracking-tight">
                 Not because people don&rsquo;t care.
               </p>

@@ -5,24 +5,27 @@ import {ExistingPlatformsGap} from "@/features/about/our-story/exsiting-platform
 import {OurDream} from "@/features/about/our-story/our-dream";
 import {OurStoryCTA} from "@/features/about/our-story/our-story-cta";
 import {OurRoot} from "@/features/about/our-story/our-root";
+import { SmoothScroll } from "@/layout/smooth-scroll";
 
 const OurStoryPage = () => {
   return (
-    <main className="min-h-screen bg-background">
-      <StoryHero />
+    <SmoothScroll>
+      <main className="min-h-screen bg-background">
+        <StoryHero />
 
-      <TheRealization />
+        <TheRealization />
 
-      <WhatWeObserved />
+        <WhatWeObserved />
 
-      <ExistingPlatformsGap />
+        <ExistingPlatformsGap />
 
-      <OurRoot />
+        <OurRoot />
 
-      <OurDream />
+        <OurDream />
 
-      <OurStoryCTA />
-    </main>
+        <OurStoryCTA />
+      </main>
+    </SmoothScroll>
   )
 }
 
