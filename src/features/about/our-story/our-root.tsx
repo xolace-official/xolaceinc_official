@@ -5,7 +5,7 @@ import { Reveal } from "@/features/about/our-story/reveal";
 
 export function OurRoot() {
   return (
-    <section className="bg-background section">
+    <section className="bg-background section mt-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-28 items-center">
         <Reveal>
           <div className="space-y-8">
