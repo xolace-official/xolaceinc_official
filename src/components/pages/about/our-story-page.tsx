@@ -17,9 +17,9 @@ const OurStoryPage = () => {
 
       <ExistingPlatformsGap />
 
-      <OurDream />
-
       <OurRoot />
+
+      <OurDream />
 
       <OurStoryCTA />
     </main>
