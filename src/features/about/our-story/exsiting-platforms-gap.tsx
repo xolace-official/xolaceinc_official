@@ -11,7 +11,7 @@ export function ExistingPlatformsGap() {
   const barInView = useInView(barRef, { once: true, margin: "-60px" });
 
   return (
-    <section className="bg-background section">
+    <section className="bg-background section mt-10">
       <div className="max-w-7xl mx-auto">
         {/* Section eyebrow + Editorial opening */}
         <Reveal>
