@@ -147,7 +147,7 @@ const NavBar = () => {
   }, [isOpen])
 
   return (
-    <header className="px-4 md:px-[5%] sticky top-2 z-50 left-0 w-full mb-4">
+    <header className="px-4 md:px-[5%] fixed top-2 z-50 left-0 w-full mb-4">
       <div className="max-w-6xl mx-auto w-full py-2 px-4 flex flex-row items-center justify-between bg-muted rounded-full border">
         <div>
           <Link href="/" className="font-bold text-lg flex items-center">
@@ -287,6 +287,7 @@ function MobileNavItem(
       {item.dropdown ? (
         <>
           <button
+            type="button"
             onClick={onToggle}
             className="flex items-center justify-between w-full text-left font-semibold text-base transition-colors duration-200"
           >

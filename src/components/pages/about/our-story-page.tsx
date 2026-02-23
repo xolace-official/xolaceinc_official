@@ -1,4 +1,3 @@
-import RadialStats from "@/features/about/our-story/radial-stats";
 import {StoryHero} from "@/features/about/our-story/story-hero";
 import {TheRealization} from "@/features/about/our-story/the-realization";
 import {WhatWeObserved} from "@/features/about/our-story/what-we-observed";
@@ -9,7 +8,7 @@ import {OurRoot} from "@/features/about/our-story/our-root";
 
 const OurStoryPage = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background">
       <StoryHero />
 
       <TheRealization />
@@ -23,7 +22,7 @@ const OurStoryPage = () => {
       <OurRoot />
 
       <OurStoryCTA />
-    </div>
+    </main>
   )
 }
 
