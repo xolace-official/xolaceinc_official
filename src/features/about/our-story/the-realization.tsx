@@ -61,7 +61,7 @@ export function TheRealization() {
           </div>
 
           {/* Right column — Video placeholder (sticky on desktop) */}
-          <div className="order-first lg:order-none">
+          <div className="order-last lg:order-none">
             <motion.div
               ref={videoRef}
               initial={{ opacity: 0, scale: 0.98 }}
