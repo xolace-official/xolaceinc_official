@@ -1,74 +1,97 @@
-"use client";
-
-import { useRef } from "react";
-import { motion, useInView } from "motion/react";
-
-const stats = [
-  { num: "75%",    text: "of people living with mental illness receive no treatment at all." },
-  { num: "1 in 4", text: "people will go through this - this year, quietly, alone." },
-  { num: "$0",     text: "is what access to real community support should cost." },
-];
+import { Reveal } from "@/features/about/our-story/reveal";
 
 export function WhatWeObserved() {
   return (
-    <div className="relative">
-      <section
-        className="relative section"
-        style={{ background: "linear-gradient(135deg, #0a0614 0%, #1a0a3a 40%, #0d1a3a 70%, #0a0614 100%)" }}
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full opacity-20"
-            style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
-          />
-          <motion.div
-            animate={{ x: [0, -25, 0], y: [0, 25, 0] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-            className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full opacity-20"
-            style={{ background: "radial-gradient(circle, var(--destructive), transparent 70%)" }}
-          />
-          <motion.div
-            animate={{ x: [0, 20, 0], y: [0, 15, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 6 }}
-            className="absolute top-1/2 right-0 w-[350px] h-[350px] rounded-full opacity-15"
-            style={{ background: "radial-gradient(circle, var(--ring), transparent 70%)" }}
-          />
-        </div>
+    <section className="relative overflow-hidden bg-background section">
+      {/* Abstract gradient shapes */}
+      <div
+        className="pointer-events-none absolute -top-20 -right-20 h-[300px] w-[300px] rounded-full opacity-[0.07]"
+        style={{
+          background: "radial-gradient(circle, var(--primary), transparent 70%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute top-1/2 -left-32 h-[250px] w-[250px] rounded-full opacity-[0.05]"
+        style={{
+          background: "radial-gradient(circle, var(--accent), transparent 70%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute -bottom-16 right-1/4 h-[200px] w-[200px] rounded-full opacity-[0.06]"
+        style={{
+          background: "radial-gradient(circle, var(--ring), transparent 70%)",
+        }}
+      />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
-          {stats.map((item, i) => {
-            const ref = useRef(null);
-            const inView = useInView(ref, { once: true, margin: "-60px" });
-            return (
-              <motion.div
-                key={item.num}
-                ref={ref}
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.7, delay: i * 0.14, ease: [0.16, 1, 0.3, 1] }}
-                className="flex items-baseline gap-8 md:gap-14 py-10 border-b border-white/10 last:border-0"
-              >
-                <span
-                  className="text-[clamp(3rem,7vw,6.5rem)] font-bold tracking-tight leading-none shrink-0 w-[160px] md:w-[260px]"
-                  style={{
-                    background: "linear-gradient(135deg, var(--primary), var(--destructive))",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {item.num}
-                </span>
-                <p className="text-xl md:text-2xl text-white/80 font-light leading-snug">
-                  {item.text}
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="max-w-3xl">
+          {/* Eyebrow + Headline */}
+          <Reveal delay={0}>
+            <p className="mb-6 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+              What We Observed
+            </p>
+            <h2 className="text-[clamp(1.6rem,3.5vw,3rem)] font-bold leading-[1.15] tracking-tight">
+              We stepped back and looked at the patterns.
+            </h2>
+          </Reveal>
+
+          {/* Observations */}
+          <div className="mt-16">
+            <Reveal delay={0.1}>
+              <div className="border-b border-border py-10">
+                <p className="text-xl font-semibold text-foreground md:text-2xl">
+                  The internet amplifies what looks good.
                 </p>
-              </motion.div>
-            );
-          })}
+                <p className="mt-3 text-lg font-light leading-relaxed text-muted-foreground md:text-xl">
+                  Feeds reward confidence, aesthetics, certainty. There&rsquo;s
+                  no algorithm for &ldquo;I don&rsquo;t know how I feel
+                  today.&rdquo; Vulnerability doesn&rsquo;t trend.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <div className="border-b border-border py-10">
+                <p className="text-xl font-semibold text-foreground md:text-2xl">
+                  Vulnerability feels risky.
+                </p>
+                <p className="mt-3 text-lg font-light leading-relaxed text-muted-foreground md:text-xl">
+                  Sharing something real means risking judgement. So most people
+                  don&rsquo;t. They perform wellness instead of practicing it.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div className="py-10">
+                <p className="text-xl font-semibold text-foreground md:text-2xl">
+                  Support often arrives late&mdash;if it arrives at all.
+                </p>
+                <p className="mt-3 text-lg font-light leading-relaxed text-muted-foreground md:text-xl">
+                  Therapy is powerful but gated. Waitlists, costs, stigma. By
+                  the time help is available, people have already learned to
+                  carry it alone.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Closing anchor */}
+          <Reveal delay={0.15}>
+            <div className="mt-16">
+              <p className="text-[clamp(1.6rem,3.5vw,3rem)] font-bold leading-[1.15] tracking-tight">
+                Not because people don&rsquo;t care.
+              </p>
+              <p className="text-[clamp(1.6rem,3.5vw,3rem)] font-bold leading-[1.15] tracking-tight">
+                Because{" "}
+                <span className="text-primary">
+                  there isn&rsquo;t a space built for it.
+                </span>
+              </p>
+            </div>
+          </Reveal>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }
