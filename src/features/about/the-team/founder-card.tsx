@@ -1,21 +1,18 @@
 'use client';
 
-import { motion, useInView } from "motion/react";
-import { useRef } from "react";
+import { motion } from "motion/react";
 import { founders } from "@/components/pages/about/the-team";
 import { AvatarPlaceholder } from "@/features/about/the-team/avatar-placeholder";
 import { cn } from "@/lib/utils";
 
 export function FounderCard({ founder, i }: { founder: typeof founders[0]; i: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   const isEven = i % 2 === 0;
 
   return (
     <motion.article
-      ref={ref}
       initial={{ opacity: 0, y: 48 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-xs rounded-2xl overflow-hidden group bg-card"
     >
@@ -78,7 +75,7 @@ export function FounderCard({ founder, i }: { founder: typeof founders[0]; i: nu
           <p
             className="text-sm md:text-base italic leading-relaxed"
             style={{
-              background: "linear-gradient(135deg, var(--primary), var(--primary))",
+              background: "linear-gradient(135deg, var(--primary), var(--accent))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
