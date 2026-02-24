@@ -40,19 +40,19 @@ const navigationData: NavItem[] = [
     dropdown: [
       {
         label: "Our Story",
-        href: "/about#ourStory",
+        href: "/about/our-story",
         description: "Why we exist and our mission",
         icon: <Heart className="w-4 h-4"/>,
       },
       {
         label: "The Team",
-        href: "/about#team",
+        href: "/about/the-team",
         description: "Meet the people behind Xolace",
         icon: <Users className="w-4 h-4"/>,
       },
       {
         label: "Impact & Vision",
-        href: "/about#impact",
+        href: "/about/impact-and-vision",
         description: "Our global vision and future plans",
         icon: <Trophy className="w-4 h-4"/>,
       },
@@ -68,7 +68,7 @@ const navigationData: NavItem[] = [
     dropdown: [
       {
         label: "Campfires",
-        href: "/community#campfires",
+        href: "/community/campfires",
         description: "Guided support communities",
         icon: <Users className="w-4 h-4"/>,
       },
@@ -147,7 +147,7 @@ const NavBar = () => {
   }, [isOpen])
 
   return (
-    <header className="px-4 md:px-[5%] sticky top-2 z-50 left-0 w-full mb-4">
+    <header className="px-4 md:px-[5%] fixed top-2 z-50 left-0 w-full mb-4">
       <div className="max-w-6xl mx-auto w-full py-2 px-4 flex flex-row items-center justify-between bg-muted rounded-full border">
         <div>
           <Link href="/" className="font-bold text-lg flex items-center">
@@ -287,6 +287,7 @@ function MobileNavItem(
       {item.dropdown ? (
         <>
           <button
+            type="button"
             onClick={onToggle}
             className="flex items-center justify-between w-full text-left font-semibold text-base transition-colors duration-200"
           >

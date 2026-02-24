@@ -6,9 +6,11 @@ import HowItWorksSection from "@/features/home/how-it-works-section";
 import OurVisionSection from "@/features/home/our-vision-section";
 import CallToActionSection from "@/features/home/call-to-action-section";
 import WhoItsForSection from "@/features/home/who-its-for-section";
+import { SmoothScroll } from "@/layout/smooth-scroll";
 
 export function HomePage() {
   return (
+  <SmoothScroll>
     <main className={"flex items-start justify-start w-full min-h-screen bg-background text-foreground font-sans"}>
       <div className="flex w-full flex-col bg-background">
         <HeroSection />
@@ -21,5 +23,6 @@ export function HomePage() {
         <CallToActionSection />
       </div>
     </main>
+  </SmoothScroll>
   );
 }

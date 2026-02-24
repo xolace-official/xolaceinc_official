@@ -1,7 +1,7 @@
 // components/shared/cta-button.tsx
-import { Button } from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import Link from "next/link";
-import { LucideIcon } from "lucide-react";
+import {LucideIcon} from "lucide-react";
 
 interface CTAButtonProps {
   label: string;
@@ -14,16 +14,17 @@ interface CTAButtonProps {
   className?: string;
 }
 
-export const CTAButton = ({
-                            label,
-                            href,
-                            onClick,
-                            variant = "default",
-                            icon,
-                            iconPosition = "right",
-                            size = "lg",
-                            className = "",
-                          }: CTAButtonProps) => {
+export const CTAButton = (
+  {
+    label,
+    href,
+    onClick,
+    variant = "default",
+    icon,
+    iconPosition = "right",
+    size = "lg",
+    className = "",
+  }: CTAButtonProps) => {
   const Icon = icon;
 
   // If button has both href and onClick
@@ -36,9 +37,9 @@ export const CTAButton = ({
         className={`text-base ${className}`}
       >
         <Link href={href} className="flex items-center" onClick={onClick}>
-          {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4" />}
+          {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4"/>}
           {label}
-          {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4" />}
+          {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4"/>}
         </Link>
       </Button>
     );
@@ -53,9 +54,9 @@ export const CTAButton = ({
         className={`text-base ${className}`}
         onClick={onClick}
       >
-        {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4" />}
+        {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4"/>}
         {label}
-        {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4" />}
+        {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4"/>}
       </Button>
     );
   }
@@ -70,9 +71,9 @@ export const CTAButton = ({
         className={`text-base ${className}`}
       >
         <Link href={href} className="flex items-center">
-          {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4" />}
+          {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4"/>}
           {label}
-          {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4" />}
+          {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4"/>}
         </Link>
       </Button>
     );
@@ -86,9 +87,9 @@ export const CTAButton = ({
       className={`text-base ${className}`}
       disabled
     >
-      {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4" />}
+      {Icon && iconPosition === "left" && <Icon className="mr-2 w-4 h-4"/>}
       {label}
-      {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4" />}
+      {Icon && iconPosition === "right" && <Icon className="ml-2 w-4 h-4"/>}
     </Button>
   );
 };
