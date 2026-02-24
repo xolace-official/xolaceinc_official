@@ -11,6 +11,7 @@ import { useReducedMotion } from "motion/react";
 import type { LucideIcon } from "lucide-react";
 import { CoreFeaturesCarousel } from "@/features/how-it-works/core-features-carousel";
 import { CoreFeaturesStack } from "@/features/how-it-works/core-features-stack";
+import { CoreFeaturesMobileDeck } from "@/features/how-it-works/core-features-mobile-deck";
 
 export interface FeatureData {
   icon: LucideIcon;
@@ -67,13 +68,21 @@ const CoreFeaturesSection = () => {
     return () => mql.removeEventListener("change", handler);
   }, []);
 
-  // Use stack for mobile or reduced motion
-  if (!isDesktop || reducedMotion) {
+  // Reduced motion: accessible static stack
+  if (reducedMotion) {
     return (
       <CoreFeaturesStack features={features} featureColors={featureColors} />
     );
   }
 
+  // Mobile: swipeable card deck
+  if (!isDesktop) {
+    return (
+      <CoreFeaturesMobileDeck features={features} featureColors={featureColors} />
+    );
+  }
+
+  // Desktop: scroll-linked carousel
   return (
     <CoreFeaturesCarousel features={features} featureColors={featureColors} />
   );
