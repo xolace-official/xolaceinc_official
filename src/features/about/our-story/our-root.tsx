@@ -1,5 +1,3 @@
-"use client";
-
 import { ImageIcon } from "lucide-react";
 import { Reveal } from "@/features/about/our-story/reveal";
 
@@ -48,7 +46,7 @@ export function OurRoot() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-muted flex flex-col items-center justify-center gap-3">
+          <div className="aspect-4/3 rounded-2xl overflow-hidden bg-muted flex flex-col items-center justify-center gap-3">
             <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border bg-background/60">
               <ImageIcon className="h-6 w-6 text-muted-foreground" />
             </div>

@@ -125,6 +125,7 @@ export default function RadialStats() {
             className="absolute inset-0 w-full h-full"
             viewBox="0 0 1200 520"
             preserveAspectRatio="xMidYMid slice"
+            aria-hidden="true"
           >
             <defs>
               <linearGradient id="leftGradient" x1="0%" y1="0%" x2="100%" y2="0%">

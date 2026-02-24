@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import { ShieldCheck, Sparkles, Users, HeartHandshake } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const IMPACT_DATA = [
   {
@@ -77,14 +78,14 @@ export default function CinematicImpact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-24 md:gap-y-40">
           {IMPACT_DATA.map((item, i) => (
             <motion.div
-              key={i}
+              key={item.title}
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`group relative ${i % 2 !== 0 ? 'md:mt-32' : ''}`}
+              className={cn("group relative", i % 2 !== 0 && "md:mt-32")}
             >
               {/* Floating Icon with Glassmorphism */}
               <div
@@ -122,7 +123,12 @@ export default function CinematicImpact() {
       </div>
 
       {/* 3. THE "BRIDGE" DECORATION: Subtle SVG paths connecting the sections */}
-      <svg className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg
+        className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        <title>Decorative connecting bridge</title>
         <motion.path
           d="M0,50 Q25,45 50,50 T100,50"
           stroke="var(--primary)"

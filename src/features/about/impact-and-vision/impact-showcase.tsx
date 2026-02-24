@@ -60,7 +60,7 @@ export default function ImpactShowcase() {
         {/* Pillars: Modern Scroll Interaction */}
         <div className="relative space-y-40 md:space-y-64">
           {pillars.map((p, i) => (
-            <PillarRow key={i} pillar={p} index={i} />
+            <PillarRow key={p.tag} pillar={p} index={i} />
           ))}
         </div>
       </div>

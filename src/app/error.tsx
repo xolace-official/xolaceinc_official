@@ -5,7 +5,7 @@ import {logClientError} from "@/lib/log-errors";
 
 export default function ErrorPage({ error }: { error: Error }) {
   useEffect(() => {
-    logClientError(error.message, error.stack);
+    logClientError(error.message, error.stack).catch(() => {});
   }, [error]);
 
   return <div>Something went wrong.</div>;

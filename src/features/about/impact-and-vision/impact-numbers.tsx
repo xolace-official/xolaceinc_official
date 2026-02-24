@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView } from "motion/react";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const stats = [
   {
@@ -43,16 +44,16 @@ function generateLines(count: number, startAngle: number, endAngle: number): Lin
   });
 }
 
+const QUADRANTS = {
+  tl: generateLines(55, 180, 270),
+  tr: generateLines(55, 270, 360),
+  bl: generateLines(55, 90, 180),
+  br: generateLines(55, 0, 90),
+};
+
 function RadialVisual({ active }: { active: string | null }) {
   const cx = 600;
   const cy = 400;
-
-  const quadrants = useMemo(() => ({
-    tl: generateLines(55, 180, 270),
-    tr: generateLines(55, 270, 360),
-    bl: generateLines(55, 90, 180),
-    br: generateLines(55, 0, 90),
-  }), []);
 
   const isActive = (q: string) => active === q;
   const anyActive = active !== null;
@@ -93,6 +94,7 @@ function RadialVisual({ active }: { active: string | null }) {
       viewBox="0 0 1200 800"
       className="absolute inset-0 w-full h-full"
       preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
     >
       <defs>
         <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
@@ -109,10 +111,10 @@ function RadialVisual({ active }: { active: string | null }) {
         transition={{ duration: 0.5 }}
       />
 
-      {renderLines(quadrants.tl, "tl", "hsl(var(--primary))")}
-      {renderLines(quadrants.tr, "tr", "hsl(var(--destructive))")}
-      {renderLines(quadrants.bl, "bl", "hsl(var(--destructive))")}
-      {renderLines(quadrants.br, "br", "hsl(var(--primary))")}
+      {renderLines(QUADRANTS.tl, "tl", "hsl(var(--primary))")}
+      {renderLines(QUADRANTS.tr, "tr", "hsl(var(--destructive))")}
+      {renderLines(QUADRANTS.bl, "bl", "hsl(var(--destructive))")}
+      {renderLines(QUADRANTS.br, "br", "hsl(var(--primary))")}
 
       <circle cx={cx} cy={cy} r={5} fill="hsl(var(--primary))" opacity={0.8} />
     </svg>
@@ -183,7 +185,7 @@ const ImpactNumbers = () => {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className={`absolute z-10 max-w-[220px] cursor-default ${style}`}
+              className={cn("absolute z-10 max-w-[220px] cursor-default", style)}
               onMouseEnter={() => setActive(q)}
               onMouseLeave={() => setActive(null)}
             >
@@ -193,9 +195,7 @@ const ImpactNumbers = () => {
                   scale: active === q ? 1.04 : 1,
                 }}
                 transition={{ duration: 0.3 }}
-                className={`text-[clamp(4rem,7.5vw,7rem)] font-bold tracking-[-0.04em] leading-none ${
-                  q === "tl" || q === "br" ? "text-primary" : "text-destructive"
-                }`}
+                className={cn("text-[clamp(4rem,7.5vw,7rem)] font-bold tracking-[-0.04em] leading-none", q === "tl" || q === "br" ? "text-primary" : "text-destructive")}
               >
                 {label.value}{label.suffix}
               </motion.p>

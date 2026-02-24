@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { Reveal } from "./reveal";
+import { Reveal } from "@/features/about/our-story/reveal";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 

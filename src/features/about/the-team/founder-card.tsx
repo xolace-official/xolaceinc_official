@@ -4,6 +4,7 @@ import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { founders } from "@/components/pages/about/the-team";
 import { AvatarPlaceholder } from "@/features/about/the-team/avatar-placeholder";
+import { cn } from "@/lib/utils";
 
 export function FounderCard({ founder, i }: { founder: typeof founders[0]; i: number }) {
   const ref = useRef(null);
@@ -19,9 +20,7 @@ export function FounderCard({ founder, i }: { founder: typeof founders[0]; i: nu
       className="grid grid-cols-1 lg:grid-cols-2 gap-0 shadow-xs rounded-2xl overflow-hidden group bg-card"
     >
       <div
-        className={`relative h-72 lg:h-auto min-h-[360px] overflow-hidden bg-muted ${
-          isEven ? "lg:order-1" : "lg:order-2"
-        }`}
+        className={cn("relative h-72 lg:h-auto min-h-[360px] overflow-hidden bg-muted", isEven ? "lg:order-1" : "lg:order-2")}
       >
         <AvatarPlaceholder
           name={founder.name}
@@ -31,9 +30,7 @@ export function FounderCard({ founder, i }: { founder: typeof founders[0]; i: nu
 
         {/* Gradient overlay fading into content pane — uses bg-card color */}
         <div
-          className={`absolute inset-0 pointer-events-none opacity-60 ${
-            isEven ? "bg-gradient-to-r" : "bg-gradient-to-l"
-          }`}
+          className={cn("absolute inset-0 pointer-events-none opacity-60", isEven ? "bg-gradient-to-r" : "bg-gradient-to-l")}
           style={{
             backgroundImage: `linear-gradient(${
               isEven ? "to right" : "to left"
@@ -54,9 +51,7 @@ export function FounderCard({ founder, i }: { founder: typeof founders[0]; i: nu
 
       {/* Content pane */}
       <div
-        className={`relative flex flex-col justify-between p-8 md:p-12 lg:p-14 ${
-          isEven ? "lg:order-2" : "lg:order-1"
-        }`}
+        className={cn("relative flex flex-col justify-between p-8 md:p-12 lg:p-14", isEven ? "lg:order-2" : "lg:order-1")}
       >
         {/* Top: index + role */}
         <div className="flex items-start justify-between mb-8">
