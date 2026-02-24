@@ -158,3 +158,18 @@
     transform: translateY(0);
   }
 }
+
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glowRotate {
+  from {
+    --glow-angle: 0deg;
+  }
+  to {
+    --glow-angle: 360deg;
+  }
+}
