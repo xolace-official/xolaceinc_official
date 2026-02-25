@@ -123,6 +123,7 @@ export function CoreFeaturesCarousel({
                 mascotRotate={mascotRotate}
                 activeIndex={activeIndex}
                 featureColors={featureColors}
+                mascotImages={features.map((f) => f.mascot)}
               />
             </div>
           </div>

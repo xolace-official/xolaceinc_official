@@ -11,8 +11,8 @@ import {
   Sun,
   Flame,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { CompanionChatPreview } from "@/features/how-it-works/companion-chat-preview";
+import { CompanionVoiceMessage } from "@/features/how-it-works/companion-waveform-disc";
 
 const companions = [
   {
@@ -22,6 +22,10 @@ const companions = [
     personality: "Warm & reflective",
     sample:
       "What would it feel like to give yourself permission to rest?",
+    duration: "0:04",
+    // Smooth rolling pattern
+    barPattern: [0.3, 0.5, 0.7, 0.9, 0.7, 0.5, 0.6, 0.8, 0.6, 0.4, 0.5, 0.7, 0.9, 0.6, 0.3],
+    align: "left" as const,
   },
   {
     name: "Sol",
@@ -29,6 +33,10 @@ const companions = [
     color: "var(--chart-5)",
     personality: "Calm & grounding",
     sample: "Let\u2019s take this one step at a time. No rush.",
+    duration: "0:03",
+    // Even steady pattern
+    barPattern: [0.4, 0.6, 0.4, 0.6, 0.4, 0.6, 0.5, 0.7, 0.5, 0.7, 0.5, 0.6, 0.4, 0.6, 0.4],
+    align: "right" as const,
   },
   {
     name: "Ember",
@@ -37,6 +45,10 @@ const companions = [
     personality: "Playful & curious",
     sample:
       "What if we looked at this from a completely different angle?",
+    duration: "0:05",
+    // Spiky energetic pattern
+    barPattern: [0.2, 0.9, 0.3, 0.8, 0.5, 1.0, 0.2, 0.7, 0.9, 0.3, 0.6, 1.0, 0.4, 0.8, 0.2],
+    align: "left" as const,
   },
 ];
 
@@ -95,8 +107,8 @@ const AiSupportSection = () => {
           </div>
         </div>
 
-        {/* ─── Zone 2: Companion Personality Cards ─── */}
-        <div className="space-y-6">
+        {/* ─── Zone 2: Companion Voice Messages ─── */}
+        <div className="space-y-8">
           <motion.h3
             className="text-lg md:text-xl font-semibold text-center"
             {...fadeUp(0)}
@@ -104,44 +116,21 @@ const AiSupportSection = () => {
             Meet the companions
           </motion.h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {companions.map((c, i) => {
-              const Icon = c.icon;
-              return (
-                <motion.div
-                  key={c.name}
-                  className="rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm p-5 space-y-3"
-                  {...fadeUp(i * 0.1)}
-                >
-                  {/* Icon + Name */}
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center"
-                      style={{
-                        backgroundColor: `color-mix(in oklch, ${c.color} 15%, transparent)`,
-                      }}
-                    >
-                      <Icon
-                        className="w-5 h-5"
-                        style={{ color: c.color }}
-                        strokeWidth={1.8}
-                      />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm">{c.name}</p>
-                      <p className="text-[11px] text-muted-foreground">
-                        {c.personality}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Sample response */}
-                  <p className="text-sm text-muted-foreground leading-relaxed italic pl-1 border-l-2 border-border/40">
-                    &ldquo;{c.sample}&rdquo;
-                  </p>
-                </motion.div>
-              );
-            })}
+          <div className="flex flex-col items-center gap-4 md:gap-5 max-w-2xl mx-auto">
+            {companions.map((c, i) => (
+              <CompanionVoiceMessage
+                key={c.name}
+                name={c.name}
+                personality={c.personality}
+                sample={c.sample}
+                color={c.color}
+                icon={c.icon}
+                duration={c.duration}
+                barPattern={c.barPattern}
+                delay={i * 0.15}
+                align={c.align}
+              />
+            ))}
           </div>
         </div>
 

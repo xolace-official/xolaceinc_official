@@ -17,6 +17,7 @@ export interface FeatureData {
   icon: LucideIcon;
   label: string;
   description: string;
+  mascot: string;
 }
 
 export const features: FeatureData[] = [
@@ -25,24 +26,28 @@ export const features: FeatureData[] = [
     label: "Posts",
     description:
       "Share what's on your mind — permanently or as a 24-hour thought that disappears. Your pace, your choice.",
+    mascot: "/assests/mascot/post-removebg.png",
   },
   {
     icon: EyeOff,
     label: "Anonymous Expression",
     description:
       "No profile pressure. Say what you need to without your name attached.",
+    mascot: "/assests/mascot/mascot-wave.png",
   },
   {
     icon: Users,
     label: "Community Interactions",
     description:
       "React, comment, and support others. Real connection without the performance.",
+    mascot: "/assests/mascot/reactions-removebg.png",
   },
   {
     icon: Flame,
     label: "Campfires",
     description:
       "Small, focused groups around shared experiences — grief, anxiety, life changes, and more.",
+    mascot: "/assests/mascot/campfire-removebg.png",
   },
 ];
 

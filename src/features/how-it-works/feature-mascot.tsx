@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, type MotionValue } from "motion/react";
+import { motion, AnimatePresence, type MotionValue } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface FeatureMascotProps {
@@ -9,6 +9,7 @@ interface FeatureMascotProps {
   mascotRotate: MotionValue<number>;
   activeIndex: number;
   featureColors: string[];
+  mascotImages: string[];
   reducedMotion?: boolean;
 }
 
@@ -19,6 +20,7 @@ export function FeatureMascot({
   mascotRotate,
   activeIndex,
   featureColors,
+  mascotImages,
   reducedMotion = false,
 }: FeatureMascotProps) {
   return (
@@ -60,15 +62,25 @@ export function FeatureMascot({
           />
         ))}
 
-      {/* Mascot */}
-      <motion.div style={{ y: mascotY, rotate: mascotRotate }}>
-        <Image
-          src="/assests/mascot/mascot-wave.png"
-          alt="Xolace mascot"
-          width={400}
-          height={400}
-          className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain drop-shadow-lg"
-        />
+      {/* Mascot — swaps per feature */}
+      <motion.div style={{ y: mascotY, rotate: mascotRotate }} className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Image
+              src={mascotImages[activeIndex]}
+              alt="Xolace mascot"
+              width={400}
+              height={400}
+              className="w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 object-contain drop-shadow-lg"
+            />
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
     </div>
   );

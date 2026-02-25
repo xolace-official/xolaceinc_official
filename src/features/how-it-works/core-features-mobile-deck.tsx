@@ -108,13 +108,23 @@ export function CoreFeaturesMobileDeck({
               />
             ))}
 
-            <Image
-              src="/assests/mascot/mascot-wave.png"
-              alt="Xolace mascot"
-              width={200}
-              height={200}
-              className="relative w-20 h-20 object-contain drop-shadow-lg"
-            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.25 }}
+              >
+                <Image
+                  src={features[activeIndex].mascot}
+                  alt="Xolace mascot"
+                  width={200}
+                  height={200}
+                  className="relative w-20 h-20 object-contain drop-shadow-lg"
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </motion.div>
 

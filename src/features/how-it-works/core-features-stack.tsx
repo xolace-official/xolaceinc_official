@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import type { LucideIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
 import type { FeatureData } from "@/features/how-it-works/core-features-section";
 
 interface CoreFeaturesStackProps {
@@ -55,7 +53,6 @@ export function CoreFeaturesStack({
         {/* Stacked cards */}
         <div className="space-y-4">
           {features.map((feature, i) => {
-            const Icon = feature.icon;
             return (
               <motion.div
                 key={feature.label}
@@ -69,18 +66,13 @@ export function CoreFeaturesStack({
                   ease: "easeOut",
                 }}
               >
-                <div
-                  className="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{
-                    backgroundColor: `color-mix(in oklch, ${featureColors[i]} 15%, transparent)`,
-                  }}
-                >
-                  <Icon
-                    className="w-6 h-6"
-                    style={{ color: featureColors[i] }}
-                    strokeWidth={1.8}
-                  />
-                </div>
+                <Image
+                  src={feature.mascot}
+                  alt={`${feature.label} mascot`}
+                  width={80}
+                  height={80}
+                  className="shrink-0 w-14 h-14 object-contain"
+                />
                 <div>
                   <h3 className="text-lg font-semibold">{feature.label}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed mt-0.5">
