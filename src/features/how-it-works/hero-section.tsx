@@ -6,7 +6,7 @@ import { ChevronsDown } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="section bg-background relative overflow-hidden">
+    <section className="min-h-screen relative overflow-hidden flex items-center justify-center ">
       {/* Subtle radial accents */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,oklch(0.67_0.29_341/0.04),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_30%,oklch(0.89_0.17_171/0.04),transparent_50%)]" />
