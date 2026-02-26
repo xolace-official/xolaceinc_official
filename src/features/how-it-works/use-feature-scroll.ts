@@ -23,9 +23,54 @@ interface CardStyle {
 interface UseFeatureScrollReturn {
   scrollYProgress: MotionValue<number>;
   activeIndex: number;
-  getCardStyle: (index: number) => CardStyle;
+  cardStyles: CardStyle[];
   mascotY: MotionValue<number>;
   mascotRotate: MotionValue<number>;
+}
+
+/** Pure band-boundary math for a given card index */
+function bandBounds(index: number) {
+  const bandStart = index * BAND;
+  const enterEnd = bandStart + BAND * 0.15;
+  const holdEnd = bandStart + BAND * 0.85;
+  const bandEnd = bandStart + BAND;
+  return { bandStart, enterEnd, holdEnd, exitStart: holdEnd, bandEnd };
+}
+
+function computeY(v: number, index: number): number {
+  const { bandStart, enterEnd, holdEnd, exitStart, bandEnd } = bandBounds(index);
+  if (v < bandStart) return 80;
+  if (v < enterEnd) return 80 * (1 - (v - bandStart) / (enterEnd - bandStart));
+  if (v < holdEnd) return 0;
+  if (v < bandEnd) return -60 * ((v - exitStart) / (bandEnd - exitStart));
+  return -60;
+}
+
+function computeOpacity(v: number, index: number): number {
+  const { bandStart, enterEnd, holdEnd, exitStart, bandEnd } = bandBounds(index);
+  if (v < bandStart) return 0;
+  if (v < enterEnd) return (v - bandStart) / (enterEnd - bandStart);
+  if (v < holdEnd) return 1;
+  if (v < bandEnd) return 1 - (v - exitStart) / (bandEnd - exitStart);
+  return 0;
+}
+
+function computeScale(v: number, index: number): number {
+  const { bandStart, enterEnd, holdEnd, exitStart, bandEnd } = bandBounds(index);
+  if (v < bandStart) return 0.92;
+  if (v < enterEnd) return 0.92 + 0.08 * ((v - bandStart) / (enterEnd - bandStart));
+  if (v < holdEnd) return 1;
+  if (v < bandEnd) return 1 - 0.05 * ((v - exitStart) / (bandEnd - exitStart));
+  return 0.95;
+}
+
+function computeRotateZ(v: number, index: number): number {
+  const { bandStart, enterEnd, holdEnd, exitStart, bandEnd } = bandBounds(index);
+  if (v < bandStart) return -2;
+  if (v < enterEnd) return -2 * (1 - (v - bandStart) / (enterEnd - bandStart));
+  if (v < holdEnd) return 0;
+  if (v < bandEnd) return 1 * ((v - exitStart) / (bandEnd - exitStart));
+  return 1;
 }
 
 export function useFeatureScroll(
@@ -46,78 +91,33 @@ export function useFeatureScroll(
     setActiveIndex(idx);
   });
 
-  function getCardStyle(index: number): CardStyle {
-    const bandStart = index * BAND;
-    const bandEnd = bandStart + BAND;
-
-    // Enter: first 15% of band
-    const enterStart = bandStart;
-    const enterEnd = bandStart + BAND * 0.15;
-
-    // Hold: 15%–85% of band
-    const holdStart = enterEnd;
-    const holdEnd = bandStart + BAND * 0.85;
-
-    // Exit: last 15% of band
-    const exitStart = holdEnd;
-    const exitEnd = bandEnd;
-
-    const y = useTransform(scrollYProgress, (v) => {
-      if (v < enterStart) return 80;
-      if (v < enterEnd) {
-        const t = (v - enterStart) / (enterEnd - enterStart);
-        return 80 * (1 - t);
-      }
-      if (v < holdEnd) return 0;
-      if (v < exitEnd) {
-        const t = (v - exitStart) / (exitEnd - exitStart);
-        return -60 * t;
-      }
-      return -60;
-    });
-
-    const opacity = useTransform(scrollYProgress, (v) => {
-      if (v < enterStart) return 0;
-      if (v < enterEnd) {
-        return (v - enterStart) / (enterEnd - enterStart);
-      }
-      if (v < holdEnd) return 1;
-      if (v < exitEnd) {
-        return 1 - (v - exitStart) / (exitEnd - exitStart);
-      }
-      return 0;
-    });
-
-    const scale = useTransform(scrollYProgress, (v) => {
-      if (v < enterStart) return 0.92;
-      if (v < enterEnd) {
-        const t = (v - enterStart) / (enterEnd - enterStart);
-        return 0.92 + 0.08 * t;
-      }
-      if (v < holdEnd) return 1;
-      if (v < exitEnd) {
-        const t = (v - exitStart) / (exitEnd - exitStart);
-        return 1 - 0.05 * t;
-      }
-      return 0.95;
-    });
-
-    const rotateZ = useTransform(scrollYProgress, (v) => {
-      if (v < enterStart) return -2;
-      if (v < enterEnd) {
-        const t = (v - enterStart) / (enterEnd - enterStart);
-        return -2 * (1 - t);
-      }
-      if (v < holdEnd) return 0;
-      if (v < exitEnd) {
-        const t = (v - exitStart) / (exitEnd - exitStart);
-        return 1 * t;
-      }
-      return 1;
-    });
-
-    return { y, opacity, scale, rotateZ };
-  }
+  // Precompute all card transforms at the top level (hooks must not be called conditionally)
+  const cardStyles: CardStyle[] = [
+    {
+      y: useTransform(scrollYProgress, (v) => computeY(v, 0)),
+      opacity: useTransform(scrollYProgress, (v) => computeOpacity(v, 0)),
+      scale: useTransform(scrollYProgress, (v) => computeScale(v, 0)),
+      rotateZ: useTransform(scrollYProgress, (v) => computeRotateZ(v, 0)),
+    },
+    {
+      y: useTransform(scrollYProgress, (v) => computeY(v, 1)),
+      opacity: useTransform(scrollYProgress, (v) => computeOpacity(v, 1)),
+      scale: useTransform(scrollYProgress, (v) => computeScale(v, 1)),
+      rotateZ: useTransform(scrollYProgress, (v) => computeRotateZ(v, 1)),
+    },
+    {
+      y: useTransform(scrollYProgress, (v) => computeY(v, 2)),
+      opacity: useTransform(scrollYProgress, (v) => computeOpacity(v, 2)),
+      scale: useTransform(scrollYProgress, (v) => computeScale(v, 2)),
+      rotateZ: useTransform(scrollYProgress, (v) => computeRotateZ(v, 2)),
+    },
+    {
+      y: useTransform(scrollYProgress, (v) => computeY(v, 3)),
+      opacity: useTransform(scrollYProgress, (v) => computeOpacity(v, 3)),
+      scale: useTransform(scrollYProgress, (v) => computeScale(v, 3)),
+      rotateZ: useTransform(scrollYProgress, (v) => computeRotateZ(v, 3)),
+    },
+  ];
 
   // Mascot spring transforms — bouncy reaction keyed to active index transitions
   const rawMascotY = useTransform(scrollYProgress, (v) => {
@@ -145,7 +145,7 @@ export function useFeatureScroll(
   return {
     scrollYProgress,
     activeIndex,
-    getCardStyle,
+    cardStyles,
     mascotY,
     mascotRotate,
   };

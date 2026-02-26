@@ -24,7 +24,7 @@ export function CoreFeaturesCarousel({
   const {
     scrollYProgress,
     activeIndex,
-    getCardStyle,
+    cardStyles,
     mascotY,
     mascotRotate,
   } = useFeatureScroll(containerRef);
@@ -99,9 +99,7 @@ export function CoreFeaturesCarousel({
 
             {/* Card stack area */}
             <div className="flex-1 relative h-80 md:h-96">
-              {features.map((feature, i) => {
-                const cardStyle = getCardStyle(i);
-                return (
+              {features.map((feature, i) => (
                   <CoreFeatureCard
                     key={feature.label}
                     index={i}
@@ -110,10 +108,9 @@ export function CoreFeaturesCarousel({
                     description={feature.description}
                     accentColor={featureColors[i]}
                     isActive={i === activeIndex}
-                    style={cardStyle}
+                    style={cardStyles[i]}
                   />
-                );
-              })}
+              ))}
             </div>
 
             {/* Mascot */}
