@@ -1,0 +1,96 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  MessageSquareText,
+  EyeOff,
+  Users,
+  Flame,
+} from "lucide-react";
+import { useReducedMotion } from "motion/react";
+import type { LucideIcon } from "lucide-react";
+import { CoreFeaturesCarousel } from "@/features/how-it-works/core-features-carousel";
+import { CoreFeaturesStack } from "@/features/how-it-works/core-features-stack";
+import { CoreFeaturesMobileDeck } from "@/features/how-it-works/core-features-mobile-deck";
+
+export interface FeatureData {
+  icon: LucideIcon;
+  label: string;
+  description: string;
+  mascot: string;
+}
+
+export const features: FeatureData[] = [
+  {
+    icon: MessageSquareText,
+    label: "Posts",
+    description:
+      "Share what's on your mind — permanently or as a 24-hour thought that disappears. Your pace, your choice.",
+    mascot: "/assests/mascot/post-removebg.png",
+  },
+  {
+    icon: EyeOff,
+    label: "Anonymous Expression",
+    description:
+      "No profile pressure. Say what you need to without your name attached.",
+    mascot: "/assests/mascot/mascot-wave.png",
+  },
+  {
+    icon: Users,
+    label: "Community Interactions",
+    description:
+      "React, comment, and support others. Real connection without the performance.",
+    mascot: "/assests/mascot/reactions-removebg.png",
+  },
+  {
+    icon: Flame,
+    label: "Campfires",
+    description:
+      "Small, focused groups around shared experiences — grief, anxiety, life changes, and more.",
+    mascot: "/assests/mascot/campfire-removebg.png",
+  },
+];
+
+// Feature accent colors: Posts=primary (magenta), Anonymous=accent (teal),
+// Community=destructive (orange), Campfires=chart-2 (purple)
+export const featureColors = [
+  "var(--primary)",
+  "var(--accent)",
+  "var(--destructive)",
+  "var(--chart-2)",
+];
+
+const CoreFeaturesSection = () => {
+  const reducedMotion = useReducedMotion();
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mql.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  // Reduced motion: accessible static stack
+  if (reducedMotion) {
+    return (
+      <CoreFeaturesStack features={features} featureColors={featureColors} />
+    );
+  }
+
+  // Mobile: swipeable card deck
+  if (!isDesktop) {
+    return (
+      <CoreFeaturesMobileDeck features={features} featureColors={featureColors} />
+    );
+  }
+
+  // Desktop: scroll-linked carousel
+  return (
+    <CoreFeaturesCarousel features={features} featureColors={featureColors} />
+  );
+};
+
+export default CoreFeaturesSection;
