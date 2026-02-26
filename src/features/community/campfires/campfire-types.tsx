@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const types = [
   {
@@ -92,6 +92,7 @@ const CampfireTypes = () => {
           <div className="space-y-2">
             {types.map((type, i) => (
               <button
+              type="button"
                 key={type.id}
                 onMouseEnter={() => setActive(type)}
                 className="group relative w-full py-8 border-b border-border/50 text-left transition-all"

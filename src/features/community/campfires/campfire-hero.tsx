@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
-import Link from "next/link";
 
 /* ── Ember particle canvas ── */
 function EmberField() {

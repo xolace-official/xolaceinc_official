@@ -75,6 +75,7 @@ export default function CampfireRoles() {
             <div className="flex flex-col">
               {roles.map((role) => (
                 <button
+                  type="button"
                   key={role.id}
                   onMouseEnter={() => setActiveTab(role)}
                   className="group relative py-6 text-left border-b border-border/50 last:border-0"
@@ -102,7 +103,7 @@ export default function CampfireRoles() {
                   {activeTab.id === role.id && (
                     <motion.div
                       layoutId="activeGlow"
-                      className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-transparent to-transparent"
+                      className="absolute inset-0 -z-10 bg-linear-to-r from-transparent via-transparent to-transparent"
                       initial={false}
                     />
                   )}
@@ -133,7 +134,8 @@ export default function CampfireRoles() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-border/50">
                   {activeTab.permissions.map((perm, idx) => (
-                    <div key={idx} className="space-y-2">
+                    // biome-ignore lint/suspicious/noArrayIndexKey: can use idx
+                      <div key={idx} className="space-y-2">
                       <div className="h-1 w-6" style={{ backgroundColor: activeTab.color }} />
                       <p className="text-[10px] uppercase tracking-widest font-bold opacity-40">Permission</p>
                       <p className="text-sm font-medium">{perm}</p>

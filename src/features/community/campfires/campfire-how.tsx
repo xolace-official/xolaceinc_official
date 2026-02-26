@@ -21,6 +21,36 @@ const steps = [
   },
 ];
 
+const StepItem = ({ step, i }: { step: typeof steps[0]; i: number }) => {
+  const stepRef = useRef(null);
+  const stepInView = useInView(stepRef, { once: true, margin: "-40px" });
+
+  return (
+    <motion.div
+      ref={stepRef}
+      initial={{ opacity: 0, y: 24 }}
+      animate={stepInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      className="py-10 border-b border-border last:border-0 group"
+    >
+      <div className="flex gap-8 items-start">
+        {/* Ghost number */}
+        <span className="text-[3.5rem] md:text-[5rem] font-bold tracking-[-0.05em] leading-none text-primary/10 select-none shrink-0 group-hover:text-primary/20 transition-colors duration-300">
+          {step.num}
+        </span>
+        <div className="pt-2">
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight leading-snug group-hover:text-primary transition-colors duration-300">
+            {step.heading}
+          </h3>
+          <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed mt-3">
+            {step.body}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const CampfireHow = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -48,35 +78,9 @@ const CampfireHow = () => {
 
           {/* Right — steps */}
           <div className="space-y-0 border-t border-border">
-            {steps.map((step, i) => {
-              const stepRef = useRef(null);
-              const stepInView = useInView(stepRef, { once: true, margin: "-40px" });
-              return (
-                <motion.div
-                  key={step.num}
-                  ref={stepRef}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={stepInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  className="py-10 border-b border-border last:border-0 group"
-                >
-                  <div className="flex gap-8 items-start">
-                    {/* Ghost number */}
-                    <span className="text-[3.5rem] md:text-[5rem] font-bold tracking-[-0.05em] leading-none text-primary/10 select-none shrink-0 group-hover:text-primary/20 transition-colors duration-300">
-                      {step.num}
-                    </span>
-                    <div className="pt-2">
-                      <h3 className="text-xl md:text-2xl font-bold tracking-tight leading-snug group-hover:text-primary transition-colors duration-300">
-                        {step.heading}
-                      </h3>
-                      <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed mt-3">
-                        {step.body}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {steps.map((step, i) => (
+              <StepItem key={step.num} step={step} i={i} />
+            ))}
           </div>
 
         </div>
