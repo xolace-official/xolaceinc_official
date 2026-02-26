@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 
 const values = [
@@ -52,6 +52,7 @@ export default function GlobalVision() {
         <div className="flex flex-col border-t border-foreground/10">
           {values.map((v, i) => (
             <motion.div
+              // biome-ignore lint/suspicious/noArrayIndexKey: can use i
               key={i}
               onMouseEnter={() => setHoveredIndex(i)}
               onMouseLeave={() => setHoveredIndex(null)}
