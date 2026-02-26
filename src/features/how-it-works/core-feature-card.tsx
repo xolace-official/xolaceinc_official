@@ -58,7 +58,7 @@ export function CoreFeatureCard({
               isActive && "opacity-100"
             )}
             style={{
-              background: `conic-gradient(from var(--glow-angle, 0deg), transparent, ${accentColor}20, transparent, ${accentColor}10, transparent)`,
+              background: `conic-gradient(from var(--glow-angle, 0deg), transparent, color-mix(in oklch, ${accentColor} 12%, transparent), transparent, color-mix(in oklch, ${accentColor} 6%, transparent), transparent)`,
               animation: isActive
                 ? "glowRotate 4s linear infinite"
                 : undefined,

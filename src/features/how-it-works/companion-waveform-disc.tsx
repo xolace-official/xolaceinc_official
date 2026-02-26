@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Play } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -46,7 +46,7 @@ export function CompanionVoiceMessage({
   const [isHovered, setIsHovered] = useState(false);
   const reducedMotion = useReducedMotion();
 
-  const bars = useMemo(() => generateBars(barPattern), [barPattern]);
+  const bars = generateBars(barPattern);
 
   const alignClass =
     align === "right"

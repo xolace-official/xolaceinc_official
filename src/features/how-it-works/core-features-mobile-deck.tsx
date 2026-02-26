@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -23,6 +23,21 @@ export function CoreFeaturesMobileDeck({
   const [exitDirection, setExitDirection] = useState(1);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [mascotBounce, setMascotBounce] = useState(false);
+
+  // Stable ember descriptors — computed once, never recalculated
+  const embersRef = useRef<
+    { left: number; bottom: number; yEnd: number; duration: number; delay: number }[]
+  >(null);
+  if (embersRef.current === null) {
+    embersRef.current = Array.from({ length: EMBER_COUNT }, () => ({
+      left: 25 + Math.random() * 50,
+      bottom: 10 + Math.random() * 30,
+      yEnd: -(30 + Math.random() * 40),
+      duration: 2 + Math.random() * 2,
+      delay: Math.random() * 3,
+    }));
+  }
+  const embers = embersRef.current;
 
   // Mascot bounce on card change
   useEffect(() => {
@@ -85,24 +100,24 @@ export function CoreFeaturesMobileDeck({
             ))}
 
             {/* Ember particles */}
-            {Array.from({ length: EMBER_COUNT }).map((_, i) => (
+            {embers.map((ember, i) => (
               <motion.div
                 key={`ember-m-${i}`}
                 className="absolute w-1 h-1 rounded-full"
                 style={{
                   backgroundColor: featureColors[activeIndex],
-                  left: `${25 + Math.random() * 50}%`,
-                  bottom: `${10 + Math.random() * 30}%`,
+                  left: `${ember.left}%`,
+                  bottom: `${ember.bottom}%`,
                 }}
                 animate={{
-                  y: [0, -30 - Math.random() * 40],
+                  y: [0, ember.yEnd],
                   opacity: [0, 0.5, 0],
                   scale: [0.5, 1, 0.3],
                 }}
                 transition={{
-                  duration: 2 + Math.random() * 2,
+                  duration: ember.duration,
                   repeat: Number.POSITIVE_INFINITY,
-                  delay: Math.random() * 3,
+                  delay: ember.delay,
                   ease: "easeOut",
                 }}
               />
@@ -307,7 +322,7 @@ function FeatureCard({
         <div
           className="absolute inset-0 rounded-2xl opacity-100"
           style={{
-            background: `conic-gradient(from var(--glow-angle, 0deg), transparent, ${color}20, transparent, ${color}10, transparent)`,
+            background: `conic-gradient(from var(--glow-angle, 0deg), transparent, color-mix(in oklch, ${color} 12%, transparent), transparent, color-mix(in oklch, ${color} 6%, transparent), transparent)`,
             animation: "glowRotate 4s linear infinite",
             mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
             maskComposite: "exclude",
@@ -366,7 +381,7 @@ function ShadowCard({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border/30 bg-card/60 backdrop-blur-sm p-6 overflow-hidden min-h-[260px]",
+        "relative rounded-2xl border border-border/30 bg-card/60 backdrop-blur-sm p-6 overflow-hidden min-h-[260px]",
         depth === 1 ? "opacity-60" : "opacity-30"
       )}
       style={{
