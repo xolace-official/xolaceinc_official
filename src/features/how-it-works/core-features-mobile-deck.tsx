@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -24,20 +24,21 @@ export function CoreFeaturesMobileDeck({
   const [hasInteracted, setHasInteracted] = useState(false);
   const [mascotBounce, setMascotBounce] = useState(false);
 
-  // Stable ember descriptors — computed once, never recalculated
-  const embersRef = useRef<
+  // Stable ember descriptors — generated once on mount (client-only to avoid hydration mismatch from Math.random)
+  const [embers, setEmbers] = useState<
     { left: number; bottom: number; yEnd: number; duration: number; delay: number }[]
-  >(null);
-  if (embersRef.current === null) {
-    embersRef.current = Array.from({ length: EMBER_COUNT }, () => ({
-      left: 25 + Math.random() * 50,
-      bottom: 10 + Math.random() * 30,
-      yEnd: -(30 + Math.random() * 40),
-      duration: 2 + Math.random() * 2,
-      delay: Math.random() * 3,
-    }));
-  }
-  const embers = embersRef.current;
+  >([]);
+  useEffect(() => {
+    setEmbers(
+      Array.from({ length: EMBER_COUNT }, () => ({
+        left: 25 + Math.random() * 50,
+        bottom: 10 + Math.random() * 30,
+        yEnd: -(30 + Math.random() * 40),
+        duration: 2 + Math.random() * 2,
+        delay: Math.random() * 3,
+      }))
+    );
+  }, []);
 
   // Mascot bounce on card change
   useEffect(() => {
@@ -102,7 +103,8 @@ export function CoreFeaturesMobileDeck({
             {/* Ember particles */}
             {embers.map((ember, i) => (
               <motion.div
-                key={`ember-m-${i}`}
+                key={`ember-m-${// biome-ignore lint/suspicious/noArrayIndexKey: allow index as key
+i}`}
                 className="absolute w-1 h-1 rounded-full"
                 style={{
                   backgroundColor: featureColors[activeIndex],
@@ -333,7 +335,7 @@ function FeatureCard({
       )}
 
       {/* Ghost number */}
-      <span className="absolute -top-4 -left-1 text-[5rem] font-bold text-foreground/[0.03] select-none pointer-events-none leading-none">
+      <span className="absolute -top-4 -left-1 text-[5rem] font-bold text-foreground/3 select-none pointer-events-none leading-none">
         0{index + 1}
       </span>
 
@@ -389,7 +391,7 @@ function ShadowCard({
       }}
     >
       {/* Ghost number */}
-      <span className="absolute -top-4 -left-1 text-[5rem] font-bold text-foreground/[0.02] select-none pointer-events-none leading-none">
+      <span className="absolute -top-4 -left-1 text-[5rem] font-bold text-foreground/2 select-none pointer-events-none leading-none">
         0{index + 1}
       </span>
 
