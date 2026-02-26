@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import {CTAButton} from "@/layout/cta-button";

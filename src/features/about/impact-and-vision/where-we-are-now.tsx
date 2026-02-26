@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useRef, useState } from "react";
 import { ShieldCheck, Sparkles, Users, HeartHandshake } from "lucide-react";
 import { cn } from "@/lib/utils";
