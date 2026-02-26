@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type PanInfo } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -40,12 +40,13 @@ export function CoreFeaturesMobileDeck({
     );
   }, []);
 
-  // Mascot bounce on card change
-  useEffect(() => {
+  // Mascot bounce — triggered directly from event handlers, not via effect
+  const bounceTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  function triggerMascotBounce() {
+    clearTimeout(bounceTimer.current);
     setMascotBounce(true);
-    const t = setTimeout(() => setMascotBounce(false), 400);
-    return () => clearTimeout(t);
-  }, [activeIndex]);
+    bounceTimer.current = setTimeout(() => setMascotBounce(false), 400);
+  }
 
   function handleDragEnd(_: unknown, info: PanInfo) {
     const shouldSwipe =
@@ -57,6 +58,7 @@ export function CoreFeaturesMobileDeck({
       setExitDirection(direction);
       setActiveIndex((prev) => (prev + 1) % features.length);
       if (!hasInteracted) setHasInteracted(true);
+      triggerMascotBounce();
     }
   }
 
@@ -65,6 +67,7 @@ export function CoreFeaturesMobileDeck({
     setExitDirection(index > activeIndex ? -1 : 1);
     setActiveIndex(index);
     if (!hasInteracted) setHasInteracted(true);
+    triggerMascotBounce();
   }
 
   const activeFeature = features[activeIndex];
