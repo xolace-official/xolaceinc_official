@@ -86,19 +86,19 @@ const navigationData: NavItem[] = [
     dropdown: [
       {
         label: "Ambassadors",
-        href: "/get-involved#ambassadors",
+        href: "/get-involved/ambassadors",
         description: "Become an ambassador",
         icon: <Users className="w-4 h-4"/>,
       },
       {
         label: "Events",
-        href: "/get-involved#events",
+        href: "/get-involved/events",
         description: "Community events and initiatives",
         icon: <Calendar className="w-4 h-4"/>,
       },
       {
         label: "Partner With Us",
-        href: "/get-involved#partners",
+        href: "/get-involved/partners",
         description: "Collaborate with Xolace",
         icon: <Heart className="w-4 h-4"/>,
       },
