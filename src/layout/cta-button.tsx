@@ -12,6 +12,7 @@ interface CTAButtonProps {
   iconPosition?: "left" | "right";
   size?: "default" | "sm" | "lg" | "icon";
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export const CTAButton = (
@@ -24,6 +25,7 @@ export const CTAButton = (
     iconPosition = "right",
     size = "lg",
     className = "",
+    type = "button",
   }: CTAButtonProps) => {
   const Icon = icon;
 
