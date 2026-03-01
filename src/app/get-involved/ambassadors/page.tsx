@@ -1,4 +1,4 @@
-import AmbassadorsPage from "@/components/pages/get-involved/ambassadors/ambassadors-page";
+import AmbassadorsPage from "@/components/pages/get-involved/ambassadors-page";
 
 const Ambassador = () => {
   return(
