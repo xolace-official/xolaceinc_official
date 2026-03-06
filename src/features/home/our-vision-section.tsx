@@ -49,10 +49,8 @@ const OurVisionSection = () => {
   return (
     <section
       id="our-vision"
-      className="section bg-linear-to-b from-background via-destructive/5 to-background relative overflow-hidden"
+      className="section bg-background relative overflow-hidden"
     >
-      {/* Subtle background decoration */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[64px_64px]" />
 
       <div className="max-w-6xl mx-auto space-y-20 relative z-10">
         {/* Header Section */}

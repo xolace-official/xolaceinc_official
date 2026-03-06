@@ -9,7 +9,7 @@ export const partnerInquirySchema = z.object({
   website: z.string().optional(),
   message: z
     .string()
-    .min(20, { message: "Please tell us a bit more — at least 20 characters." }),
+    .min(20, { message: "Please tell us a bit more - at least 20 characters." }),
 });
 
 export type PartnerInquiryFormState = {

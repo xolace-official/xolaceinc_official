@@ -44,7 +44,6 @@ const PartnerCTA = () => {
           Ready to begin
         </motion.p>
 
-        {/* Giant headline — staggered slide-up, your PartnerHero pattern */}
         <div className="overflow-hidden mb-2">
           <motion.h2
             initial={{ y: "100%" }}
@@ -87,7 +86,7 @@ const PartnerCTA = () => {
             One conversation. No pitch decks. No pressure. Just two organisations figuring out if they can do more good together.
           </motion.p>
 
-          {/* Right — CTAs + reassurance */}
+          {/* Right - CTAs + reassurance */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}

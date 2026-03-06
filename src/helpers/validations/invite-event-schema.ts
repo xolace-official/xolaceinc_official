@@ -7,7 +7,7 @@ export const inviteEventSchema = z.object({
   location: z.string().min(2, { message: "Location is required" }),
   preferredDate: z.string().optional(),
   estimatedAttendees: z.string().optional(),
-  message: z.string().min(10, { message: "Please tell us a bit more — at least 10 characters." }),
+  message: z.string().min(10, { message: "Please tell us a bit more - at least 10 characters." }),
 });
 
 export type InviteEventFormState = {

@@ -44,10 +44,10 @@ const PartnerCase = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Partnering with Xolace isn&apos;t a transaction. It&apos;s a position — on the right side of a crisis that&apos;s defining a generation.
+          Partnering with Xolace isn&apos;t a transaction. It&apos;s a position - on the right side of a crisis that&apos;s defining a generation.
         </motion.p>
 
-        {/* Pillars — same left-rule pattern as ProblemSection */}
+        {/* Pillars - same left-rule pattern as ProblemSection */}
         <div className="relative max-w-3xl mx-auto">
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-1 rounded-full bg-linear-to-b from-primary/40 via-primary to-primary/40" />
 
@@ -81,7 +81,7 @@ const PartnerCase = () => {
           </div>
         </div>
 
-        {/* Closing line — same pattern as ProblemSection's bottom line */}
+        {/* Closing line - same pattern as ProblemSection's bottom line */}
         <motion.p
           className="text-xl md:text-2xl text-muted-foreground text-center mt-16"
           initial={{ opacity: 0, y: 10 }}

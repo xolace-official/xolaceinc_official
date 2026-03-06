@@ -58,7 +58,7 @@ export function StoryHero() {
           className="text-muted-foreground text-lg md:text-xl font-light mt-10 max-w-lg leading-relaxed"
         >
           We were surrounded by conversations. Posts. Reactions. Noise.
-          And yet — something felt missing.
+          And yet - something felt missing.
         </motion.p>
       </motion.div>
 

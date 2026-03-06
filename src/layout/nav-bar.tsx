@@ -98,7 +98,7 @@ const navigationData: NavItem[] = [
       },
       {
         label: "Partner With Us",
-        href: "/get-involved/partners",
+        href: "/get-involved/partner-with-us",
         description: "Collaborate with Xolace",
         icon: <Heart className="w-4 h-4"/>,
       },

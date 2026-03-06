@@ -105,7 +105,7 @@ const PartnerHero = () => {
     >
       <ParticleField />
 
-      {/* Badge — absolute top-right, no relative conflict */}
+      {/* Badge - absolute top-right, no relative conflict */}
       <motion.div
         initial={{ opacity: 0, scale: 0.4, rotate: -30 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}

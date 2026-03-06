@@ -13,12 +13,12 @@ const whatWeOffer = [
   {
     icon: Users,
     title: "Ambassador Network",
-    description: "A growing force of trained ambassadors on campuses and in communities — your brand travels with them.",
+    description: "A growing force of trained ambassadors on campuses and in communities - your brand travels with them.",
   },
   {
     icon: TrendingUp,
     title: "Impact Reporting",
-    description: "Clear, honest reporting on what your partnership achieves — for your stakeholders, board, or ESG documentation.",
+    description: "Clear, honest reporting on what your partnership achieves - for your stakeholders, board, or ESG documentation.",
   },
   {
     icon: Zap,
@@ -28,7 +28,7 @@ const whatWeOffer = [
   {
     icon: Shield,
     title: "Mission Alignment",
-    description: "Every partner is reviewed for values alignment. This protects the community — and protects your reputation.",
+    description: "Every partner is reviewed for values alignment. This protects the community - and protects your reputation.",
   },
   {
     icon: BookOpen,

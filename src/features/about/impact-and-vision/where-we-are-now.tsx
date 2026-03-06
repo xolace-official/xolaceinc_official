@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const IMPACT_DATA = [
   {
     title: "A safe space to speak.",
-    desc: "Anonymous and open posts. No performance required — just the freedom to say what you actually feel.",
+    desc: "Anonymous and open posts. No performance required - just the freedom to say what you actually feel.",
     icon: <ShieldCheck />,
     token: "var(--chart-1)"
   },
@@ -26,7 +26,7 @@ const IMPACT_DATA = [
   },
   {
     title: "Born free.",
-    desc: "No paywall for the essentials. Built where cost is the barrier — free is our foundation.",
+    desc: "No paywall for the essentials. Built where cost is the barrier - free is our foundation.",
     icon: <HeartHandshake />,
     token: "var(--accent)"
   }

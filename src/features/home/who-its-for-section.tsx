@@ -32,7 +32,7 @@ const WhoItsForSection = () => {
   return (
     <section
       id="who-its-for"
-      className="section bg-linear-to-b from-background via-muted/10 to-background"
+      className="section bg-muted/30"
     >
       <div className="max-w-5xl mx-auto">
         <motion.div

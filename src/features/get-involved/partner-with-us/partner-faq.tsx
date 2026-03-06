@@ -12,7 +12,7 @@ import {
 const faqs = [
   {
     q: "Does it cost anything to partner with Xolace?",
-    a: "Most partnerships are built on shared value, not financial transactions. We do have structured programmes for corporate partners where resource exchange is part of the agreement — but we never gatekeep partnerships behind price tags. Reach out and we'll find what works.",
+    a: "Most partnerships are built on shared value, not financial transactions. We do have structured programmes for corporate partners where resource exchange is part of the agreement - but we never gatekeep partnerships behind price tags. Reach out and we'll find what works.",
   },
   {
     q: "How long does a typical partnership last?",
@@ -24,11 +24,11 @@ const faqs = [
   },
   {
     q: "What does the process look like after I submit an inquiry?",
-    a: "We respond within 48 hours with an initial conversation to understand your goals. From there, we propose a partnership structure that fits both sides. No lengthy procurement process — we move with urgency.",
+    a: "We respond within 48 hours with an initial conversation to understand your goals. From there, we propose a partnership structure that fits both sides. No lengthy procurement process - we move with urgency.",
   },
   {
     q: "We're a small organisation. Is this still relevant for us?",
-    a: "Some of our most meaningful partnerships have been with small, focused organisations. Scale isn't the criterion — alignment is. If your mission touches mental health, community, or youth, there's likely a place for you here.",
+    a: "Some of our most meaningful partnerships have been with small, focused organisations. Scale isn't the criterion - alignment is. If your mission touches mental health, community, or youth, there's likely a place for you here.",
   },
 ];
 

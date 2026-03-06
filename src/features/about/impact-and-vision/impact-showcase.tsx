@@ -9,7 +9,7 @@ const pillars = [
     statSub: "Always.",
     tag: "Access",
     title: "Support that costs nothing to start.",
-    body: "We built Xolace in Koforidua, Ghana — where stigma, cost, and silence keep most people from ever getting help. Free isn't a marketing strategy. It's the only acceptable answer to the problem we're solving.",
+    body: "We built Xolace in Koforidua, Ghana - where stigma, cost, and silence keep most people from ever getting help. Free isn't a marketing strategy. It's the only acceptable answer to the problem we're solving.",
     color: "var(--chart-1)", // Pink
   },
   {
@@ -17,7 +17,7 @@ const pillars = [
     statSub: "people. Every year.",
     tag: "Scale",
     title: "The problem is bigger than any single product.",
-    body: "970 million people live with a mental health condition right now. We're building one honest piece of the solution — community-based, peer-led, accessible to anyone with a phone.",
+    body: "970 million people live with a mental health condition right now. We're building one honest piece of the solution - community-based, peer-led, accessible to anyone with a phone.",
     color: "var(--accent)", // Mint
   },
   {

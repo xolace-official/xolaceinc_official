@@ -30,7 +30,7 @@ const partnerTypes = [
     icon: Building2,
     type: "Corporates & Workplaces",
     tagline: "Because employee wellbeing is business strategy.",
-    what: "Bring Xolace into your organisation's wellness layer — workshops, peer support structures, and access to professional community resources.",
+    what: "Bring Xolace into your organisation's wellness layer - workshops, peer support structures, and access to professional community resources.",
     youGet: ["Workplace wellbeing workshops", "Team access to Xolace platform", "Mental health first aid integration", "ESG-aligned impact reporting"],
     theyGet: ["Brand alignment with mental health", "Authentic CSR storytelling", "Employee engagement programme", "Co-branded content opportunities"],
     accentVar: "--primary",
@@ -40,7 +40,7 @@ const partnerTypes = [
     icon: Megaphone,
     type: "Media & Creatives",
     tagline: "Stories that shift how people think about support.",
-    what: "Partner with us to tell the mental health story differently — through documentary, editorial, podcast, social campaigns, or creative collaboration.",
+    what: "Partner with us to tell the mental health story differently - through documentary, editorial, podcast, social campaigns, or creative collaboration.",
     youGet: ["Access to community stories (with consent)", "Co-production opportunities", "Platform for your mental health content", "Reach into Xolace's community"],
     theyGet: ["Authentic storytelling partner", "Mission-driven content angle", "Broad audience with lived experience", "Collaborative editorial freedom"],
     accentVar: "--destructive",
@@ -77,7 +77,7 @@ const PartnerTypes = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg text-muted-foreground font-light mt-4 max-w-xl"
           >
-            Whether you run a campus, a clinic, a company, or a camera — the work of mental health needs all of you.
+            Whether you run a campus, a clinic, a company, or a camera - the work of mental health needs all of you.
           </motion.p>
         </div>
 

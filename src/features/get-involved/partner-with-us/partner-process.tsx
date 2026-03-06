@@ -7,7 +7,7 @@ const steps = [
   {
     num: "01",
     heading: "Reach out.",
-    body: "Submit a short inquiry — who you are, what you do, what you're hoping for. No lengthy forms. No gatekeeping.",
+    body: "Submit a short inquiry - who you are, what you do, what you're hoping for. No lengthy forms. No gatekeeping.",
   },
   {
     num: "02",
@@ -71,7 +71,7 @@ const PartnerProcess = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
 
-          {/* Left — sticky heading */}
+          {/* Left - sticky heading */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -93,7 +93,7 @@ const PartnerProcess = () => {
             </p>
           </motion.div>
 
-          {/* Right — steps */}
+          {/* Right - steps */}
           <div
             className="space-y-0 border-t"
             style={{ borderColor: "rgba(255,255,255,0.1)" }}

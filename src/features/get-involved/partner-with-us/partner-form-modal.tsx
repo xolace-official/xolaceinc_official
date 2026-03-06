@@ -78,7 +78,7 @@ function PartnerForm({ defaultPartnerType }: { defaultPartnerType?: string }) {
           Let's build this together.
         </h3>
         <p className="text-muted-foreground text-sm font-light leading-relaxed max-w-xs">
-          Your inquiry has been received. We'll reach out within 48 hours to start the conversation — no pitch deck required.
+          Your inquiry has been received. We'll reach out within 48 hours to start the conversation - no pitch deck required.
         </p>
       </motion.div>
     );
