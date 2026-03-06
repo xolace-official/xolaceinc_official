@@ -62,11 +62,10 @@ export function CurrentYear() {
 
 const Footer = () => {
   return (
-    <footer id="footer" className="pt-14 pb-4 px-14 w-full bg-foreground text-primary-foreground">
+    <footer id="footer" className="pt-14 pb-4 px-4 px-14 w-full bg-foreground text-primary-foreground">
 
-      {/* ── Main grid ── */}
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[1.8fr_1fr_1fr_1fr_1fr] gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-[1.8fr_1fr_1fr_1fr_1fr] gap-12">
 
           {/* Brand column */}
           <div className="flex flex-col gap-6">

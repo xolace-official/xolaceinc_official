@@ -10,7 +10,7 @@ const CampfireCTA = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="section bg-foreground text-background relative overflow-hidden border-t border-border/50">
+    <section className="section bg-muted  relative overflow-hidden border-t border-border/50">
 
       <div
         aria-hidden
@@ -42,8 +42,13 @@ const CampfireCTA = () => {
           <CTAButton
             label={"Join as a Camper"}
             icon={ArrowRight}
+            onClick={() => ""}
           />
-          <CTAButton label={"Explore Campfires Now"} variant={"secondary"}/>
+          <CTAButton
+            label={"Explore Campfires Now"}
+            variant={"outline"}
+            onClick={() => ""}
+          />
         </motion.div>
 
       </div>

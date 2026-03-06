@@ -11,7 +11,7 @@ const EventCTA = () => {
   const inView = useInView(ref, {once: true, margin: "-80px"});
 
   return (
-    <section className="section bg-foreground text-background relative overflow-hidden border-t border-border/50">
+    <section className="section bg-muted text-foreground relative overflow-hidden border-t border-border/50">
       <div
         aria-hidden
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70vw] h-[35vh] pointer-events-none z-0"
@@ -33,7 +33,7 @@ const EventCTA = () => {
           initial={{opacity: 0}}
           animate={inView ? {opacity: 1} : {}}
           transition={{delay: 0.35, duration: 0.7}}
-          className="text-background/55 text-lg font-light leading-relaxed max-w-md mx-auto mb-12">
+          className="text-lg font-light leading-relaxed max-w-md mx-auto mb-12">
           Find an event near you, register your spot, or bring Xolace to your community.
         </motion.p>
 

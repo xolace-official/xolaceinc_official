@@ -43,13 +43,6 @@ export default function ImpactCTA() {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="flex items-center gap-4 mb-12"
-        >
-          <div className="h-px w-12 bg-primary" />
-        </motion.div>
 
         {/* HERO STATEMENT */}
         <motion.div style={{ y: springY }} className="mb-24">
@@ -66,15 +59,12 @@ export default function ImpactCTA() {
         </motion.div>
 
         {/* INTERACTIVE ROW */}
-        <div className="pt-16 border-t border-border flex flex-col lg:flex-row lg:items-end justify-between gap-12">
+        <div className=" flex flex-col lg:flex-row lg:items-end justify-between gap-12">
           <div className="max-w-md space-y-6">
             <p className="text-xl md:text-2xl text-foreground/50 font-light leading-snug">
               Every person who joins makes the community stronger. Every voice that speaks makes the space safer.
             </p>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] font-mono uppercase tracking-widest text-foreground/30">Live from Koforidua 🇬🇭</span>
-            </div>
+
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -89,6 +79,8 @@ export default function ImpactCTA() {
                 variant={"default"}
                 label={"Join Xolace"}
                 size="lg"
+                onClick={() => ""}
+
               />
               {/* Button Shadow/Glow */}
               <motion.div
@@ -97,7 +89,12 @@ export default function ImpactCTA() {
               />
             </motion.div>
 
-            <CTAButton variant={"outline"} label={"Read Our Story"}/>
+            <CTAButton
+              variant={"outline"}
+              label={"Read Our Story"}
+              onClick={() => ""}
+
+            />
           </div>
         </div>
 
